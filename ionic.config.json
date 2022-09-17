@@ -1,0 +1,7 @@
+{
+  "name": "mall-facility",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
