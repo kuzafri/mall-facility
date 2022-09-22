@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+html.md,
+html.ios {
+  font-family: "Rubik";
+  --ion-default-font: "Rubik";
+}

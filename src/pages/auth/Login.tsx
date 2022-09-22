@@ -73,6 +73,7 @@ const Login: React.FC = () => {
         onIonScroll={(e) => {
           ToolbarTransitionHelper(e.detail.scrollTop, toolbarRef);
         }}
+        className="bg-slate-900"
       >
         <div className="landing absolute top-0 h-full w-full opacity-5 z-[-1]"></div>
         <div className="px-5">

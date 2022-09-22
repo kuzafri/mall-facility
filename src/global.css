@@ -1,0 +1,163 @@
+.custom-tab-bar {
+  background-color: white;
+  box-shadow: 0px -3px 22px -6px rgba(0, 0, 0, 0.25);
+  border-radius: 20px 20px 0px 0px;
+}
+
+.custom-tab-bar > ion-tab-button.tab-selected {
+  color: #ed6161 !important;
+}
+.custom-tab-bar ion-tab-button {
+  color: #aeaeb2 !important;
+  --ripple-color: #ed6161;
+  --color-selected: #ed6161;
+}
+
+.custom-header {
+  background: transparent;
+  --ion-color-base: #fcfdff !important;
+  --border-width: 0 !important;
+}
+
+.custom-toolbar {
+  --background: #ed6161 !important;
+  --border-width: 0 !important;
+  border-radius: 0 0 25px 25px !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.--bg-transparent {
+  --background: transparent;
+  --border-width: 0 !important;
+}
+
+.--bg-light {
+  --background: #ed6161;
+  --border-width: 0 !important;
+}
+
+.--bg-white {
+  --background: #ffffff;
+  --border-width: 0 !important;
+}
+
+ion-content {
+  --background: #fcfdff;
+}
+
+.landing {
+  background-image: url("../public/assets/img/OnlineHackathonMountain-removebg-preview.png");
+  background-repeat: no-repeat;
+}
+
+ion-searchbar.custom-searchbar > .searchbar-input-container > .searchbar-input {
+  background-color: #ffffff;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.searchbar-disabled {
+  opacity: 1 !important;
+  pointer-events: initial !important;
+}
+
+ion-img.custom-image::part(image) {
+  height: 30%;
+  width: auto;
+}
+
+ion-img.cart-image::part(image) {
+  border-radius: 0.25rem;
+}
+
+.toolbar-footer {
+  box-shadow: 0px -1px 25px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-swiper.swiper > .swiper-pagination {
+  bottom: -5px;
+}
+
+.onboard-swiper.swiper {
+  overflow: visible;
+}
+
+.onboard-swiper.swiper > .swiper-pagination {
+  bottom: -35%;
+}
+
+.checkout-swiper.swiper
+  > .swiper-pagination
+  > span.swiper-pagination-bullet-active,
+span.swiper-pagination-bullet {
+  background: #ed6161 !important;
+}
+
+ion-modal.custom-sheet-modal::part(content) {
+  border-radius: 20px 20px 0 0;
+}
+
+ion-modal.--short-modal::part(content) {
+  height: 70%;
+  top: 30%;
+  position: absolute;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.verification-input > div {
+  display: flex;
+  justify-content: center;
+}
+
+.verification-input > div > input {
+  font-family: "Rubik";
+  border: none !important;
+  border-bottom: 2px solid grey !important;
+  margin-left: 1%;
+  margin-right: 1%;
+  background-color: #ffffff00;
+  border-radius: 0 !important;
+}
+
+ion-radio {
+  --color-checked: #ed6161;
+}
+
+ion-modal.alert-modal {
+  /* --width: fit-content; */
+  --width: 300px;
+  --height: fit-content;
+  --border-radius: 10px;
+  /* --box-shadow: 0 28px 48px rgba(255,170,170, 0.4); */
+}
+
+ion-modal.alert-modal::part(content) {
+  padding: 10px 10px 20px 10px;
+  overflow: visible;
+}
+
+ion-modal.single-page {
+  /* --width: fit-content; */
+  --width: 92%;
+  --height: fit-content;
+  --border-radius: 10px;
+  /* --box-shadow: 0 28px 48px rgba(255,170,170, 0.4); */
+}
+
+ion-modal.single-page::part(content) {
+  padding: 10px 0px 0px 0px;
+  overflow: visible;
+}
+
+ion-modal.onboard::part(content) {
+  --background: transparent;
+}
+
+ion-checkbox {
+  --background-checked: #ed6161;
+}
+
+ion-checkbox::part(container) {
+  border-radius: 3px;
+  border: 2px solid #eb7373;
+}

@@ -1,0 +1,32 @@
+{
+  "home":{
+    "select_cafe": "Pilih Cafe",
+    "recommended": "Pilihan Utama",
+    "best_offer": "Tawaran Terbaik"
+  },
+  "greeting":{
+    "morning":"Selamat Pagi",
+    "afternoon":"Selamat Pagi",
+    "evening":"Selamat Petang",
+    "night":"Selamat Malam"
+  },
+  "profile":{
+    "change_language":"Tukar Bahasa",
+    "account_detail":"Maklumat Akaun",
+    "setting":"Tetapan",
+    "menu":{
+      "change_language": "Tukar Bahasa",
+      "change_password": "Tukar Katalaluan",
+      "terms": "Terma dan Syarat"
+    }
+  },
+  "input":{
+    "name": "Nama",
+    "email": "Emel",
+    "phone_number": "No. Telefon"
+  },
+  "button":{
+    "log_out":"Log keluar",
+    "update_profile":"Kemaskini Profil"
+  }
+}

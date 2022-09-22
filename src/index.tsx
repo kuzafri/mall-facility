@@ -1,16 +1,32 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
+import ReactDOM from "react-dom";
+import { ToastContainer } from "react-toastify";
+import "./global.css";
 import "./index.css";
 
-const container = document.getElementById("root");
-const root = createRoot(container!);
-root.render(
+/* 3rd Party Styling */
+import "swiper/css";
+import "swiper/css/pagination";
+
+ReactDOM.render(
   <React.StrictMode>
+    <ToastContainer
+      closeButton={false}
+      theme="colored"
+      hideProgressBar={false}
+      autoClose={3000}
+      position="top-center"
+      draggableDirection="y"
+      toastClassName={
+        "relative flex p-1 mx-4 top-5 min-h-10 rounded-xl justify-between overflow-hidden"
+      }
+    />
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

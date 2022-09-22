@@ -1,0 +1,32 @@
+{
+  "home": {
+    "select_cafe": "Select Cafe",
+    "recommended": "Recommended",
+    "best_offer": "Best Offer"
+  },
+  "greeting": {
+    "morning": "Good Morning",
+    "afternoon": "Good Afternoon",
+    "evening": "Good Evening",
+    "night": "Good Night"
+  },
+  "profile": {
+    "change_language": "Change Language",
+    "account_detail": "Account Details",
+    "setting": "Settings",
+    "menu": {
+      "change_language": "Change Language",
+      "change_password": "Change Password",
+      "terms": "Terms and Condition"
+    }
+  },
+  "input": {
+    "name": "Name",
+    "email": "Email",
+    "phone_number": "Phone Number"
+  },
+  "button": {
+    "log_out": "Log out",
+    "update_profile": "Update Profile"
+  }
+}
