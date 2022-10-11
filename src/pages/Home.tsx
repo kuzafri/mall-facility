@@ -7,6 +7,7 @@ import {
   IonImg,
 } from "@ionic/react";
 import { cart, search } from "ionicons/icons";
+import ButtonList from "components/Home/ButtonList";
 
 const Home: React.FC = () => {
   return (
@@ -14,14 +15,19 @@ const Home: React.FC = () => {
       <IonHeader mode="ios" className="custom-header overflow-visible">
         <IonToolbar mode="ios" className="custom-toolbar overflow-visible">
           <div className="flex flex-row text-white items-center justify-between mx-3 pt-3 py-5 h-[80px]">
-            <div className="h-[50px]">
-              <IonImg src="assets/img/UniEat.png" className="h-[50px]" />
-            </div>
-            <div className="flex items-center space-x-3"></div>
+            <p className="text-lg ml-6">
+              Welcome <b>Kuzafri</b>
+            </p>
+            <p className="text-sm text-center">
+              3434 <br />
+              point collected
+            </p>
           </div>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen></IonContent>
+      <IonContent fullscreen>
+        <ButtonList />
+      </IonContent>
     </>
   );
 };
