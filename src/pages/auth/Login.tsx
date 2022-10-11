@@ -66,23 +66,13 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <PublicHeader ref={toolbarRef} title="Sign In" path="/landing" />
-      <IonContent
-        fullscreen
-        scrollEvents={true}
-        onIonScroll={(e) => {
-          ToolbarTransitionHelper(e.detail.scrollTop, toolbarRef);
-        }}
-        className="bg-slate-900"
-      >
-        <div className="landing absolute top-0 h-full w-full opacity-5 z-[-1]"></div>
+      <PublicHeader ref={toolbarRef} title="Log In" path="/landing" />
+      <IonContent fullscreen style={{ "--background": "#4B727A" }}>
+        <div className="absolute top-0 h-full w-full opacity-5 z-[-1]"></div>
         <div className="px-5">
           <div className="h-[300px] flex flex-row items-center justify-center">
-            <IonImg src="assets/img/browser-window-displaying-workspace.png" />
+            <IonImg src="assets/img/undraw_login_re_4vu2.svg" />
           </div>
-          <p className=" text-muted">
-            Login to your account to continue fill your tummy!
-          </p>
 
           <form onSubmit={handleSubmit(onSubmitHandler)} className="my-3">
             <Controller
@@ -143,11 +133,14 @@ const Login: React.FC = () => {
               Forgot Password?
             </p>
 
-            <BaseButton label="Log In" className="my-3" />
+            <BaseButton
+              label="Log In"
+              className="my-3 !bg-[#196B79] w-60 mx-auto drop-shadow-[bg-white] text-white"
+            />
           </form>
-          <p className="text-sm text-center">
+          <p className="text-sm text-black text-center">
             Didn't have an account?
-            <span className="text-primary" onClick={() => goTo("/register")}>
+            <span className="!text-white" onClick={() => goTo("/register")}>
               Create an account
             </span>
           </p>

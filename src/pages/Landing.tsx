@@ -13,8 +13,8 @@ const Landing: React.FC = () => {
   return (
     <>
       <IonContent fullscreen style={{ "--background": "#4B727A" }}>
-        <div className="flex flex-col relative justify-center item-center px-5 h-full space-y-3">
-          <div className="flex flex-col justify-center items center h-[150px]">
+        <div className="flex flex-col relative mt-[12rem] px-5 h-full space-y-3">
+          <div className="flex flex-col justify-center  h-[150px] m-12">
             <IonImg src="assets/img/logo.png" className=" h-[120px]" />
             <h3 className="text-lg text-center">Odessey Shopping Center</h3>
             <p className="text-white text-center italic">
@@ -23,15 +23,15 @@ const Landing: React.FC = () => {
           </div>
           <BaseButton
             label="Sign In"
-            className="!bg-black shadow-lg !drop-shadow-none"
+            className="!bg-black shadow-lg !drop-shadow-none w-60 mx-auto"
             onClick={() => goTo("/login")}
           />
           <BaseButton
             label="Sign Up"
-            className="bg-green-600 !text-primary"
+            className="bg-white !text-black w-60 mx-auto"
             onClick={() => goTo("/register")}
           />
-          <div className="landing absolute !bottom-0 h-full w-full opacity-[8]"></div>
+          {/* <div className="landing !bottom-0 h-full w-full opacity-[8]"></div> */}
         </div>
       </IonContent>
     </>

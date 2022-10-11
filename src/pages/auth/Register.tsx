@@ -56,7 +56,12 @@ const Registration: React.FC = () => {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<FormSchemaType>({
-    defaultValues: { name: undefined, email: undefined, password: undefined, cpassword: undefined },
+    defaultValues: {
+      name: undefined,
+      email: undefined,
+      password: undefined,
+      cpassword: undefined,
+    },
     resolver: zodResolver(FormSchema),
   });
 
@@ -88,10 +93,11 @@ const Registration: React.FC = () => {
       <PublicHeader ref={toolbarRef} title="Sign Up" />
       <IonContent
         fullscreen
-        scrollEvents={true}
-        onIonScroll={(e) => {
-          ToolbarTransitionHelper(e.detail.scrollTop, toolbarRef);
-        }}
+        style={{ "--background": "#4B727A" }}
+        // scrollEvents={true}
+        // onIonScroll={(e) => {
+        //   ToolbarTransitionHelper(e.detail.scrollTop, toolbarRef);
+        // }}
       >
         <div className="landing absolute top-0 h-full w-full opacity-5 z-[-1]"></div>
         <div className="p-5 ">
@@ -240,22 +246,22 @@ const Registration: React.FC = () => {
                 onClick={() => {}}
               >
                 Term of Services
-              </span>
-              {" "}and{" "}
+              </span>{" "}
+              and{" "}
               <span
                 className="text-primary inline-block"
                 // TODO: Open policy in browser view
-                onClick={() => { }}
+                onClick={() => {}}
               >
                 Privacy Policy
-              </span>
-              {" "}of this apps.
+              </span>{" "}
+              of this apps.
             </p>
 
             <BaseButton label="Sign Up" className="my-3" />
           </form>
           <p className="text-sm text-center">
-            Already have an account? {" "}
+            Already have an account?{" "}
             <span className="text-primary" onClick={() => goTo("/login")}>
               Sign In
             </span>

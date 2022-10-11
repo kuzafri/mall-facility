@@ -5,12 +5,12 @@
 }
 
 .custom-tab-bar > ion-tab-button.tab-selected {
-  color: #ed6161 !important;
+  color: #4b727a !important;
 }
 .custom-tab-bar ion-tab-button {
   color: #aeaeb2 !important;
-  --ripple-color: #ed6161;
-  --color-selected: #ed6161;
+  --ripple-color: #4b727a;
+  --color-selected: #4b727a;
 }
 
 .custom-header {
@@ -20,19 +20,24 @@
 }
 
 .custom-toolbar {
-  --background: #ed6161 !important;
+  --background: #4b727a !important;
   --border-width: 0 !important;
   border-radius: 0 0 25px 25px !important;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 .--bg-transparent {
-  --background: transparent;
+  --background: #7d9ea4;
   --border-width: 0 !important;
 }
 
 .--bg-light {
-  --background: #ed6161;
+  --background: #4b727a;
+  --border-width: 0 !important;
+}
+
+.--bg-light {
+  --background: #196b79;
   --border-width: 0 !important;
 }
 
@@ -89,7 +94,7 @@ ion-img.cart-image::part(image) {
   > .swiper-pagination
   > span.swiper-pagination-bullet-active,
 span.swiper-pagination-bullet {
-  background: #ed6161 !important;
+  background: #4b727a !important;
 }
 
 ion-modal.custom-sheet-modal::part(content) {
@@ -120,7 +125,7 @@ ion-modal.--short-modal::part(content) {
 }
 
 ion-radio {
-  --color-checked: #ed6161;
+  --color-checked: #4b727a;
 }
 
 ion-modal.alert-modal {
@@ -151,13 +156,4 @@ ion-modal.single-page::part(content) {
 
 ion-modal.onboard::part(content) {
   --background: transparent;
-}
-
-ion-checkbox {
-  --background-checked: #ed6161;
-}
-
-ion-checkbox::part(container) {
-  border-radius: 3px;
-  border: 2px solid #eb7373;
 }
