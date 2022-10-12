@@ -19,7 +19,7 @@ const PrivateRoute: React.FC<any> = ({ component: Component, ...rest }) => {
             <IonTabButton tab="tab1" href="/home" className="bg-white">
               <IonIcon icon={home} className="h-[26px]" />
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/orders" className="bg-white">
+            <IonTabButton tab="tab2" href="/news" className="bg-white">
               <IonIcon icon={albums} className="h-[26px]" />
             </IonTabButton>
             <IonTabButton tab="tab3" href="/profile" className="bg-white">

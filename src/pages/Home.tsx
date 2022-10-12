@@ -8,6 +8,8 @@ import {
 } from "@ionic/react";
 import { cart, search } from "ionicons/icons";
 import ButtonList from "components/Home/ButtonList";
+import SwiperCinema from "components/Home/SwiperCinema";
+import SwiperSale from "components/Home/SwiperSale";
 
 const Home: React.FC = () => {
   return (
@@ -27,6 +29,8 @@ const Home: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen className="!bg-gray-600">
         <ButtonList />
+        <SwiperSale />
+        <SwiperCinema />
       </IonContent>
     </>
   );

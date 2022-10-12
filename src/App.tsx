@@ -36,6 +36,8 @@ import Home from "./pages/Home";
 import Landing from "pages/Landing";
 import Login from "pages/auth/Login";
 import Registration from "pages/auth/Register";
+import News from "pages/News";
+import Profile from "pages/Profile";
 
 setupIonicReact({
   swipeBackEnabled: false,
@@ -55,6 +57,8 @@ const App: React.FC = () => (
 
           {/* Private Route ---------------------------------------------*/}
           <PrivateRoute exact path="/home" component={Home} />
+          <PrivateRoute exact path="/news" component={News} />
+          <PrivateRoute exact path="/profile" component={Profile} />
 
           {/* Single Route ----------------------------------------------*/}
           <SingleRoute exact path="/notification" component={Notification} />
