@@ -15,7 +15,10 @@ type PublicHeaderType = {
   path?: string;
 };
 
-const PublicHeader: React.ForwardRefRenderFunction<any, PublicHeaderType> = (props, ref) => {
+const PublicHeader: React.ForwardRefRenderFunction<any, PublicHeaderType> = (
+  props,
+  ref
+) => {
   const { title, path } = props;
   const { goTo, goBack } = useNavigate();
 
@@ -32,11 +35,7 @@ const PublicHeader: React.ForwardRefRenderFunction<any, PublicHeaderType> = (pro
       <IonToolbar ref={ref} mode="ios" className="--bg-transparent !pt-5">
         <IonButtons slot="start">
           <IonButton onClick={backButtonHandler}>
-            <IonIcon
-              className="text-primary"
-              icon={arrowBack}
-              slot="icon-only"
-            />
+            <IonIcon className="text-white" icon={arrowBack} slot="icon-only" />
           </IonButton>
         </IonButtons>
         <IonTitle className="text-xl text-primary">{title}</IonTitle>

@@ -15,18 +15,15 @@ const PrivateRoute: React.FC<any> = ({ component: Component, ...rest }) => {
       render={(props) => (
         <IonPage>
           <Component {...props} />
-          <IonTabBar slot="bottom" className="custom-tab-bar">
-            <IonTabButton tab="tab1" href="/home">
-              <IonIcon icon={home} className="h-[22px]" />
-              <IonLabel >Home</IonLabel>
+          <IonTabBar slot="bottom" className=" custom-tab-bar">
+            <IonTabButton tab="tab1" href="/home" className="bg-white">
+              <IonIcon icon={home} className="h-[26px]" />
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/orders">
-              <IonIcon icon={albums} className="h-[22px]" />
-              <IonLabel >Orders</IonLabel>
+            <IonTabButton tab="tab2" href="/orders" className="bg-white">
+              <IonIcon icon={albums} className="h-[26px]" />
             </IonTabButton>
-            <IonTabButton tab="tab3" href="/profile">
-              <IonIcon icon={person} className="h-[22px]" />
-              <IonLabel >Profile</IonLabel>
+            <IonTabButton tab="tab3" href="/profile" className="bg-white">
+              <IonIcon icon={person} className="h-[26px]" />
             </IonTabButton>
           </IonTabBar>
         </IonPage>

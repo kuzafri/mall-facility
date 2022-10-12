@@ -25,7 +25,7 @@ const Home: React.FC = () => {
           </div>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent fullscreen className="!bg-gray-600">
         <ButtonList />
       </IonContent>
     </>

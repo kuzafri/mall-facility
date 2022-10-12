@@ -16,14 +16,13 @@ import useNavigate from "hooks/useNavigate";
 import { z } from "zod";
 import MailIcon from "@mui/icons-material/Mail";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TextField, InputAdornment } from "@mui/material";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 
 const ForgotPassword: React.FC = () => {
   const { showToast } = useToastify();
   const { goTo } = useNavigate();
 
-  const toolbarRef = useRef<HTMLIonToolbarElement>(null)
+  const toolbarRef = useRef<HTMLIonToolbarElement>(null);
 
   const FormSchema = z.object({
     email: z
@@ -58,7 +57,7 @@ const ForgotPassword: React.FC = () => {
 
   useIonViewWillEnter(() => {
     ToolbarTransitionHelper(0, toolbarRef);
-  })
+  });
 
   return (
     <>
@@ -80,32 +79,10 @@ const ForgotPassword: React.FC = () => {
             account.
           </p>
 
-          <form onSubmit={handleSubmit(onSubmitHandler)} className="my-3">
-            <Controller
-              name="email"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Email Address"
-                  placeholder="Email Address"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <MailIcon className="text-primary" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  variant="outlined"
-                  fullWidth
-                  margin="dense"
-                  error={errors.email ? true : false}
-                  helperText={errors.email ? errors.email.message : ""}
-                  disabled={isSubmitting}
-                />
-              )}
-            />
-          </form>
+          <form
+            onSubmit={handleSubmit(onSubmitHandler)}
+            className="my-3"
+          ></form>
 
           <BaseButton label="Submit" className="my-3" />
         </div>

@@ -6,8 +6,8 @@ const ButtonList = () => {
       <div className="!bg-white h-[30%] mt-4">
         <div className="grid grid-cols-3 grid-rows-2 text-black w-auto h-full">
           <div className="w-auto mx-auto my-auto">
-            <div className="w-24 h-23 rounded-full ">
-              <i className="fa-solid fa-city text-2xl ml-8 mt-2 color-primary">
+            <div className="w-24 h-23 rounded-fullt ">
+              <i className="fa-solid fa-city text-2xl ml-8 mt-2 !text-primary ">
                 <i className="fa-solid fa-comment-dots absolute text-[18px] text-red-400 mb-14 mr-6"></i>
               </i>
             </div>

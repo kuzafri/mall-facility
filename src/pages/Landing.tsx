@@ -28,7 +28,7 @@ const Landing: React.FC = () => {
           />
           <BaseButton
             label="Sign Up"
-            className="bg-white !text-black w-60 mx-auto"
+            className="bg-white !text-black w-60 mx-auto !drop-shadow"
             onClick={() => goTo("/register")}
           />
           {/* <div className="landing !bottom-0 h-full w-full opacity-[8]"></div> */}

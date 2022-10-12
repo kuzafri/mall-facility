@@ -2,7 +2,8 @@ import React from "react";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
+import { ChakraProvider } from "@chakra-ui/react";
 import { ToastContainer } from "react-toastify";
 import "./global.css";
 import "./index.css";
@@ -11,7 +12,8 @@ import "./index.css";
 import "swiper/css";
 import "swiper/css/pagination";
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root")!);
+root.render(
   <React.StrictMode>
     <ToastContainer
       closeButton={false}
@@ -24,11 +26,11 @@ ReactDOM.render(
         "relative flex p-1 mx-4 top-5 min-h-10 rounded-xl justify-between overflow-hidden"
       }
     />
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+    <ChakraProvider>
+      <App />
+    </ChakraProvider>
+  </React.StrictMode>
 );
-
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA

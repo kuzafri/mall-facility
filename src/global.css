@@ -36,7 +36,7 @@
   --border-width: 0 !important;
 }
 
-.--bg-light {
+.--bg-secondary {
   --background: #196b79;
   --border-width: 0 !important;
 }
@@ -55,46 +55,8 @@ ion-content {
   background-repeat: no-repeat;
 }
 
-ion-searchbar.custom-searchbar > .searchbar-input-container > .searchbar-input {
-  background-color: #ffffff;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
-}
-
-.searchbar-disabled {
-  opacity: 1 !important;
-  pointer-events: initial !important;
-}
-
-ion-img.custom-image::part(image) {
-  height: 30%;
-  width: auto;
-}
-
-ion-img.cart-image::part(image) {
-  border-radius: 0.25rem;
-}
-
 .toolbar-footer {
   box-shadow: 0px -1px 25px rgba(0, 0, 0, 0.1);
-}
-
-.checkout-swiper.swiper > .swiper-pagination {
-  bottom: -5px;
-}
-
-.onboard-swiper.swiper {
-  overflow: visible;
-}
-
-.onboard-swiper.swiper > .swiper-pagination {
-  bottom: -35%;
-}
-
-.checkout-swiper.swiper
-  > .swiper-pagination
-  > span.swiper-pagination-bullet-active,
-span.swiper-pagination-bullet {
-  background: #4b727a !important;
 }
 
 ion-modal.custom-sheet-modal::part(content) {
@@ -156,4 +118,8 @@ ion-modal.single-page::part(content) {
 
 ion-modal.onboard::part(content) {
   --background: transparent;
+}
+
+input {
+  width: full;
 }

@@ -14,12 +14,11 @@ import useNavigate from "hooks/useNavigate";
 
 /* 3rd Party Component */
 import { z } from "zod";
-import MailIcon from "@mui/icons-material/Mail";
-import LockIcon from "@mui/icons-material/Lock";
-import PersonIcon from "@mui/icons-material/Person";
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TextField, InputAdornment } from "@mui/material";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { EmailIcon, PhoneIcon, LockIcon } from "@chakra-ui/icons";
+import { Stack, InputGroup, InputLeftElement, Input } from "@chakra-ui/react";
 
 const Registration: React.FC = () => {
   const { showToast } = useToastify();
@@ -102,143 +101,106 @@ const Registration: React.FC = () => {
         <div className="landing absolute top-0 h-full w-full opacity-5 z-[-1]"></div>
         <div className="p-5 ">
           <div className="h-[150px] flex flex-row items-center justify-center">
-            <IonImg class="h-full" src="assets/img/signup.png" />
+            <IonImg
+              class="h-full"
+              src="assets/img/undraw_Access_account_re_8spm.svg"
+            />
           </div>
-          <p className=" text-muted">
-            Sign Up to your account to continue fill your tummy!
-          </p>
 
           <form onSubmit={handleSubmit(onSubmitHandler)} className="my-3">
-            <Controller
-              name="name"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Name"
+            <Stack spacing={4}>
+              <p className="!mb-[-12px]">Name</p>
+              <InputGroup
+                width="full"
+                sx={{
+                  "--banner-color": "colors.gray.100",
+                }}
+              >
+                <InputLeftElement
+                  pointerEvents="none"
+                  // children={<PeopleIcon color="gray.300" />}
+                />
+                <Input
+                  type="tel"
                   placeholder="Name"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <PersonIcon className="text-primary" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  variant="outlined"
-                  fullWidth
-                  margin="dense"
-                  error={errors.name ? true : false}
-                  helperText={errors.name ? errors.name.message : ""}
-                  disabled={isSubmitting}
+                  style={{ backgroundColor: "white" }}
                 />
-              )}
-            />
+              </InputGroup>
 
-            <Controller
-              name="email"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Email"
-                  placeholder="Email"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <MailIcon className="text-primary" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  variant="outlined"
-                  fullWidth
-                  margin="dense"
-                  error={errors.email ? true : false}
-                  helperText={errors.email ? errors.email.message : ""}
-                  disabled={isSubmitting}
+              <p className="!mb-[-12px]">Email Address</p>
+              <InputGroup
+                width="full"
+                sx={{
+                  "--banner-color": "colors.gray.100",
+                }}
+              >
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<EmailIcon color="gray.300" />}
                 />
-              )}
-            />
-
-            <Controller
-              name="mobileno"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Mobile No"
-                  placeholder="Mobile No"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <PersonIcon className="text-primary" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  variant="outlined"
-                  fullWidth
-                  margin="dense"
-                  error={errors.mobileno ? true : false}
-                  helperText={errors.mobileno ? errors.mobileno.message : ""}
-                  disabled={isSubmitting}
+                <Input
+                  type="tel"
+                  placeholder="Email Address"
+                  style={{ backgroundColor: "white" }}
                 />
-              )}
-            />
+              </InputGroup>
 
-            {/* //TODO: Guna mui-tel-input untuk mobile-no */}
+              <p className="!mb-[-12px]">Mobile Number</p>
+              <InputGroup
+                width="full"
+                sx={{
+                  "--banner-color": "colors.gray.100",
+                }}
+              >
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<PhoneIcon color="gray.300" />}
+                />
+                <Input
+                  type="tel"
+                  placeholder="Mobile Number"
+                  style={{ backgroundColor: "white" }}
+                />
+              </InputGroup>
 
-            <Controller
-              name="password"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Password"
+              <p className="!mb-[-12px]">Password</p>
+              <InputGroup
+                width="full"
+                sx={{
+                  "--banner-color": "colors.gray.100",
+                }}
+              >
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<LockIcon color="gray.300" />}
+                />
+                <Input
+                  type="tel"
                   placeholder="Password"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <LockIcon className="text-primary" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  type="password"
-                  variant="outlined"
-                  fullWidth
-                  margin="dense"
-                  error={errors.password ? true : false}
-                  helperText={errors.password ? errors.password.message : ""}
-                  disabled={isSubmitting}
+                  style={{ backgroundColor: "white" }}
                 />
-              )}
-            />
+              </InputGroup>
 
-            <Controller
-              name="cpassword"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Confirm Password"
+              <p className="!mb-[-12px]">Confirm Password</p>
+              <InputGroup
+                width="full"
+                sx={{
+                  "--banner-color": "colors.gray.100",
+                }}
+              >
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<LockIcon color="gray.300" />}
+                />
+                <Input
+                  type="tel"
                   placeholder="Confirm Password"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <LockIcon className="text-primary" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  type="password"
-                  variant="outlined"
-                  fullWidth
-                  margin="dense"
-                  error={errors.cpassword ? true : false}
-                  helperText={errors.cpassword ? errors.cpassword.message : ""}
-                  disabled={isSubmitting}
+                  style={{ backgroundColor: "white" }}
                 />
-              )}
-            />
+              </InputGroup>
+            </Stack>
 
-            <p className="text-muted text-sm">
+            {/* <p className="text-muted text-sm">
               By proceeding registration process, I hereby agree all the{" "}
               <span
                 className="text-primary inline-block"
@@ -256,9 +218,12 @@ const Registration: React.FC = () => {
                 Privacy Policy
               </span>{" "}
               of this apps.
-            </p>
+            </p> */}
 
-            <BaseButton label="Sign Up" className="my-3" />
+            <BaseButton
+              label="Sign Up"
+              className="my-3 !bg-[#196B79] w-60 mx-auto drop-shadow-[bg-white] text-white"
+            />
           </form>
           <p className="text-sm text-center">
             Already have an account?{" "}

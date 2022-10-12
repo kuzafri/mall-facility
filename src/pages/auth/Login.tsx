@@ -14,11 +14,17 @@ import useNavigate from "hooks/useNavigate";
 
 /* 3rd Party Component */
 import { z } from "zod";
-import MailIcon from "@mui/icons-material/Mail";
-import LockIcon from "@mui/icons-material/Lock";
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TextField, InputAdornment } from "@mui/material";
+import {
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  Stack,
+} from "@chakra-ui/react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { PhoneIcon, CheckIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
 
 const Login: React.FC = () => {
   const { showToast } = useToastify();
@@ -75,56 +81,43 @@ const Login: React.FC = () => {
           </div>
 
           <form onSubmit={handleSubmit(onSubmitHandler)} className="my-3">
-            <Controller
-              name="email"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Email"
-                  placeholder="Email"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <MailIcon className="text-primary" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  variant="outlined"
-                  fullWidth
-                  margin="dense"
-                  error={errors.email ? true : false}
-                  helperText={errors.email ? errors.email.message : ""}
-                  disabled={isSubmitting}
+            <Stack spacing={4}>
+              <p className="!mb-[-12px]">Email Address</p>
+              <InputGroup
+                width="full"
+                sx={{
+                  "--banner-color": "colors.gray.100",
+                }}
+              >
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<EmailIcon color="gray.300" />}
                 />
-              )}
-            />
+                <Input
+                  type="tel"
+                  placeholder="Email Address"
+                  style={{ backgroundColor: "white" }}
+                />
+              </InputGroup>
 
-            <Controller
-              name="password"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Password"
-                  type="password"
-                  placeholder="Password"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <LockIcon className="text-primary" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  variant="outlined"
-                  fullWidth
-                  margin="dense"
-                  error={errors.password ? true : false}
-                  helperText={errors.password ? errors.password.message : ""}
-                  disabled={isSubmitting}
+              <p className="!mb-[-12px]">Password</p>
+              <InputGroup
+                width="full"
+                sx={{
+                  "--banner-color": "colors.gray.100",
+                }}
+              >
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<LockIcon color="gray.300" />}
                 />
-              )}
-            />
+                <Input
+                  type="tel"
+                  placeholder="Password"
+                  style={{ backgroundColor: "white" }}
+                />
+              </InputGroup>
+            </Stack>
 
             <p
               className="text-sm text-primary"
@@ -136,6 +129,7 @@ const Login: React.FC = () => {
             <BaseButton
               label="Log In"
               className="my-3 !bg-[#196B79] w-60 mx-auto drop-shadow-[bg-white] text-white"
+              onClick={() => goTo("/home")}
             />
           </form>
           <p className="text-sm text-black text-center">
