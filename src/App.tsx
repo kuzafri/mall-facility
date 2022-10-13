@@ -38,6 +38,10 @@ import Login from "pages/auth/Login";
 import Registration from "pages/auth/Register";
 import News from "pages/News";
 import Profile from "pages/Profile";
+import ComplainDetails from "pages/ComplaintDetails";
+import ComplainList from "pages/ComplaintList";
+import MallComplaintPage from "pages/MallComplaintPage";
+import ShopComplaintPage from "pages/ShopComplaintPage";
 
 setupIonicReact({
   swipeBackEnabled: false,
@@ -62,6 +66,22 @@ const App: React.FC = () => (
 
           {/* Single Route ----------------------------------------------*/}
           <SingleRoute exact path="/notification" component={Notification} />
+          <SingleRoute exact path="/complainlist" component={ComplainList} />
+          <SingleRoute
+            exact
+            path="/complaindetails"
+            component={ComplainDetails}
+          />
+          <SingleRoute
+            exact
+            path="/mallcomplaintpage"
+            component={MallComplaintPage}
+          />
+          <SingleRoute
+            exact
+            path="/shopcomplaintpage"
+            component={ShopComplaintPage}
+          />
 
           {/* ... */}
 

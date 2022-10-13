@@ -200,26 +200,6 @@ const Registration: React.FC = () => {
               </InputGroup>
             </Stack>
 
-            {/* <p className="text-muted text-sm">
-              By proceeding registration process, I hereby agree all the{" "}
-              <span
-                className="text-primary inline-block"
-                // TODO: Open terms in browser view
-                onClick={() => {}}
-              >
-                Term of Services
-              </span>{" "}
-              and{" "}
-              <span
-                className="text-primary inline-block"
-                // TODO: Open policy in browser view
-                onClick={() => {}}
-              >
-                Privacy Policy
-              </span>{" "}
-              of this apps.
-            </p> */}
-
             <BaseButton
               label="Sign Up"
               className="my-3 !bg-[#196B79] w-60 mx-auto drop-shadow-[bg-white] text-white"
