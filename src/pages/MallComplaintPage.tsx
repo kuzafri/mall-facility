@@ -7,7 +7,7 @@ const MallComplaintPage = () => {
   return (
     <>
       <PrivateHeader title="Mall Complaint " />
-      <IonContent>
+      <IonContent style={{ "--background": "#efefef" }}>
         <MallComplaint />
       </IonContent>
     </>

@@ -1,6 +1,6 @@
 .custom-tab-bar {
   background-color: white;
-  box-shadow: 0px -3px 22px -6px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0px -3px 22px -6px rgba(0, 0, 0, 0.25);
   border-radius: 20px 20px 0px 0px;
 }
 
@@ -29,11 +29,13 @@
 .--bg-transparent {
   --background: #7d9ea4;
   --border-width: 0 !important;
+  color: #7d9ea4;
 }
 
 .--bg-primary {
   --background: #4b727a;
   --border-width: 0 !important;
+  color: #4b727a;
 }
 
 .--bg-secondary {
@@ -47,7 +49,8 @@
 }
 
 ion-content {
-  --background: #fcfdff;
+  --background: #efefef;
+  --color: "#000" !important;
 }
 
 .landing {
@@ -122,4 +125,22 @@ ion-modal.onboard::part(content) {
 
 input {
   width: full;
+}
+
+.ion-page > .exclude {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /* display: block !important; */
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+  contain: layout size style;
+  overflow: hidden;
+  z-index: 0;
+}
+
+ion-page {
+  --background: "#efefef" !important;
 }

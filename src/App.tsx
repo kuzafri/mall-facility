@@ -1,8 +1,8 @@
 import { Redirect, Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { RecoilRoot } from "recoil";
 
 /* Routes */
 import PublicRoute from "routes/PublicRoute";
@@ -32,16 +32,22 @@ import "react-toastify/dist/ReactToastify.css";
 import "./i18n/config";
 
 /* Pages */
-import Home from "./pages/Home";
+import Home from "pages/Home";
 import Landing from "pages/Landing";
 import Login from "pages/auth/Login";
 import Registration from "pages/auth/Register";
 import News from "pages/News";
 import Profile from "pages/Profile";
-import ComplainDetails from "pages/ComplaintDetails";
 import ComplainList from "pages/ComplaintList";
+import ComplainDetails from "pages/ComplaintDetails";
 import MallComplaintPage from "pages/MallComplaintPage";
 import ShopComplaintPage from "pages/ShopComplaintPage";
+
+import TenantNews from "pages/tenant/TenantNews";
+import TenantHome from "pages/tenant/TenantHome";
+import TenantProfile from "pages/tenant/TenantProfile";
+import TenantComplaintList from "pages/tenant/TenantComplaintList";
+import TenantMallComplaintPage from "pages/tenant/TenantMallComplaintPage";
 
 setupIonicReact({
   swipeBackEnabled: false,
@@ -52,44 +58,82 @@ const queryClient = new QueryClient();
 const App: React.FC = () => (
   <IonApp>
     <QueryClientProvider client={queryClient}>
-      <IonReactRouter>
-        <IonRouterOutlet>
-          {/* Public Route ---------------------------------------------*/}
-          <PublicRoute exact path="/landing" component={Landing} />
-          <PublicRoute exact path="/login" component={Login} />
-          <PublicRoute exact path="/register" component={Registration} />
+      <RecoilRoot>
+        <IonReactRouter>
+          <IonRouterOutlet>
+            {/* Public Route ---------------------------------------------*/}
+            <PublicRoute exact path="/landing" component={Landing} />
+            <PublicRoute exact path="/login" component={Login} />
+            <PublicRoute exact path="/register" component={Registration} />
 
-          {/* Private Route ---------------------------------------------*/}
-          <PrivateRoute exact path="/home" component={Home} />
-          <PrivateRoute exact path="/news" component={News} />
-          <PrivateRoute exact path="/profile" component={Profile} />
+            {/* Private Route ---------------------------------------------*/}
+            <PrivateRoute exact path="/home" component={Home} />
+            <PrivateRoute exact path="/news" component={News} />
+            <PrivateRoute exact path="/profile" component={Profile} />
 
-          {/* Single Route ----------------------------------------------*/}
-          <SingleRoute exact path="/notification" component={Notification} />
-          <SingleRoute exact path="/complainlist" component={ComplainList} />
-          <SingleRoute
-            exact
-            path="/complaindetails"
-            component={ComplainDetails}
-          />
-          <SingleRoute
-            exact
-            path="/mallcomplaintpage"
-            component={MallComplaintPage}
-          />
-          <SingleRoute
-            exact
-            path="/shopcomplaintpage"
-            component={ShopComplaintPage}
-          />
+            <PrivateRoute exact path="/hometenant" component={TenantHome} />
+            <PrivateRoute exact path="/newstenant" component={TenantNews} />
+            <PrivateRoute
+              exact
+              path="/profiletenant"
+              component={TenantProfile}
+            />
 
-          {/* ... */}
+            {/* Single Route ----------------------------------------------*/}
+            <SingleRoute exact path="/notification" component={Notification} />
+            <SingleRoute exact path="/complainlist" component={ComplainList} />
+            <SingleRoute
+              exact
+              path="/complaindetails"
+              component={ComplainDetails}
+            />
+            <SingleRoute
+              exact
+              path="/mallcomplaintpage"
+              component={MallComplaintPage}
+            />
+            <SingleRoute
+              exact
+              path="/shopcomplaintpage"
+              component={ShopComplaintPage}
+            />
+            <SingleRoute
+              exact
+              path="/tenantmallcomplaintpage"
+              component={TenantMallComplaintPage}
+            />
+            <SingleRoute
+              exact
+              path="/TenantComplaintList"
+              component={TenantComplaintList}
+            />
+            {/* ... */}
+            {/* Single Route ----------------------------------------------*/}
+            <SingleRoute exact path="/notification" component={Notification} />
+            <SingleRoute exact path="/complainlist" component={ComplainList} />
+            <SingleRoute
+              exact
+              path="/complaindetails"
+              component={ComplainDetails}
+            />
+            <SingleRoute
+              exact
+              path="/mallcomplaintpage"
+              component={MallComplaintPage}
+            />
+            <SingleRoute
+              exact
+              path="/shopcomplaintpage"
+              component={ShopComplaintPage}
+            />
+            {/* ... */}
 
-          <Route exact path="/">
-            <Redirect to="/landing" />
-          </Route>
-        </IonRouterOutlet>
-      </IonReactRouter>
+            <Route exact path="/">
+              <Redirect to="/landing" />
+            </Route>
+          </IonRouterOutlet>
+        </IonReactRouter>
+      </RecoilRoot>
       {/* <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
     </QueryClientProvider>
   </IonApp>

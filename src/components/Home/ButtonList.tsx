@@ -11,13 +11,10 @@ const ButtonList = () => {
         <div className="grid grid-cols-3 grid-rows-2 text-black w-auto h-full">
           <div className="w-auto mx-auto my-auto">
             <div
-              className="px-5 py-5 ml-2 w-16 h-16 rounded-full !bg-[#bfdadf]"
+              className="flex flex-row items-center justify-center mx-auto p-4 w-16 h-16 rounded-full !bg-[#bfdadf]"
               onClick={() => goTo("/mallcomplaintpage", "forward")}
             >
-              {/* <i className="fa-solid fa-city text-2xl  mt-2 --bg-primary">
-                <i className="fa-solid fa-comment-dots absolute text-[18px] text-red-400 mb-14 mr-6"></i>
-              </i> */}
-              <IonImg src="assets/img/city-solid.svg" className="w-9 !mr-2" />
+              <IonImg src="assets/img/city-solid.svg" />
             </div>
             <p className="text-xs text-center">Mall Complaint</p>
           </div>
@@ -62,10 +59,13 @@ const ButtonList = () => {
           </div>
           <div className="w-auto mx-auto my-auto">
             <div
-              className="px-5 py-5 w-16 h-16 ml-1 rounded-full !bg-[#bfdadf]"
+              className="flex flex-row items-center justify-center py-4 pr-3 w-16 h-16 rounded-full !bg-[#bfdadf]"
               onClick={() => goTo("/shopcomplaintpage", "forward")}
             >
-              <IonImg src="assets/img/store-solid.svg" className="w-9 mr-4 " />
+              <IonImg
+                src="assets/img/store-solid.svg"
+                className="ml-[1.15rem]"
+              />
             </div>
             <p className="text-xs text-center">
               Shop <br />

@@ -52,14 +52,14 @@ const Login: React.FC = () => {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<FormSchemaType>({
-    defaultValues: { email: "ku", password: "123" },
+    defaultValues: { email: "", password: "" },
     resolver: zodResolver(FormSchema),
   });
 
   const onSubmitHandler: SubmitHandler<FormSchemaType> = async (data: any) => {
     if (await authFactory().login(data)) {
       goTo("/home");
-      reset({ email: "ku", password: "123" });
+      reset({ email: "", password: "" });
     } else {
       showToast("error", "Invalid credential, please try again");
     }

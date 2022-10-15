@@ -1,5 +1,12 @@
 import { EmailIcon, PhoneIcon, LockIcon } from "@chakra-ui/icons";
-import { Stack, InputGroup, InputLeftElement, Input } from "@chakra-ui/react";
+import {
+  Stack,
+  InputGroup,
+  InputLeftElement,
+  Input,
+  Textarea,
+  Select,
+} from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BaseButton } from "components/Base";
 import React from "react";
@@ -67,100 +74,94 @@ const ShopComplaint = () => {
     <>
       <form onSubmit={handleSubmit(onSubmitHandler)} className="my-3 p-4 ">
         <Stack spacing={4}>
-          <p className="!mb-[-12px]">Name</p>
+          <p className="!mb-[-12px] text-[#7b7b7b]">Name</p>
           <InputGroup
             width="full"
             sx={{
               "--banner-color": "colors.gray.100",
             }}
           >
-            <InputLeftElement
-              pointerEvents="none"
-              // children={<PeopleIcon color="gray.300" />}
-            />
-            <Input
-              type="tel"
-              placeholder="Name"
-              style={{ backgroundColor: "white" }}
-            />
+            <Input type="tel" style={{ backgroundColor: "white" }} />
           </InputGroup>
 
-          <p className="!mb-[-12px]">Email Address</p>
+          <p className="!mb-[-12px] text-[#7b7b7b]">Email Address</p>
           <InputGroup
             width="full"
             sx={{
               "--banner-color": "colors.gray.100",
             }}
           >
-            <InputLeftElement
-              pointerEvents="none"
-              children={<EmailIcon color="gray.300" />}
-            />
-            <Input
-              type="tel"
-              placeholder="Email Address"
-              style={{ backgroundColor: "white" }}
-            />
+            <Input type="tel" style={{ backgroundColor: "white" }} />
           </InputGroup>
 
-          <p className="!mb-[-12px]">Mobile Number</p>
+          <p className="!mb-[-12px] text-[#7b7b7b]">Mobile Number</p>
           <InputGroup
             width="full"
             sx={{
               "--banner-color": "colors.gray.100",
             }}
           >
-            <InputLeftElement
-              pointerEvents="none"
-              children={<PhoneIcon color="gray.300" />}
-            />
-            <Input
-              type="tel"
-              placeholder="Mobile Number"
-              style={{ backgroundColor: "white" }}
-            />
+            <Input type="tel" style={{ backgroundColor: "white" }} />
           </InputGroup>
 
-          <p className="!mb-[-12px]">Password</p>
+          <p className="!mb-[-12px] text-[#7b7b7b]">Shop</p>
           <InputGroup
             width="full"
             sx={{
               "--banner-color": "colors.gray.100",
             }}
           >
-            <InputLeftElement
-              pointerEvents="none"
-              children={<LockIcon color="gray.300" />}
-            />
-            <Input
-              type="tel"
-              placeholder="Password"
-              style={{ backgroundColor: "white" }}
-            />
+            <Select
+              placeholder="Select shop"
+              style={{ backgroundColor: "white", color: "gray", width: "100%" }}
+            >
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </Select>
           </InputGroup>
 
-          <p className="!mb-[-12px]">Confirm Password</p>
+          <p className="!mb-[-12px] text-[#7b7b7b]">Type of Complaint</p>
           <InputGroup
             width="full"
             sx={{
               "--banner-color": "colors.gray.100",
             }}
           >
-            <InputLeftElement
-              pointerEvents="none"
-              children={<LockIcon color="gray.300" />}
-            />
-            <Input
-              type="tel"
-              placeholder="Confirm Password"
-              style={{ backgroundColor: "white" }}
-            />
+            <Select
+              placeholder="Select type of complaint"
+              style={{ backgroundColor: "white", color: "gray", width: "100%" }}
+            >
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </Select>
+          </InputGroup>
+
+          <p className="!mb-[-12px] text-[#7b7b7b]">Image of Complaint</p>
+          <InputGroup
+            width="full"
+            sx={{
+              "--banner-color": "colors.gray.100",
+            }}
+          >
+            <Input type="file" className="text-black" />
+          </InputGroup>
+
+          <p className="!mb-[-12px] text-[#7b7b7b]">Description</p>
+          <InputGroup
+            width="full"
+            sx={{
+              "--banner-color": "colors.gray.100",
+            }}
+          >
+            <Textarea style={{ backgroundColor: "white" }} />
           </InputGroup>
         </Stack>
 
         <BaseButton
-          label="Sign Up"
-          className="my-3 !bg-[#196B79] w-60 mx-auto drop-shadow-[bg-white] text-white"
+          label="Submit"
+          className="my-3 !bg-[#196B79] w-[60%] mt-12 float-right mx-auto drop-shadow-[bg-white] text-white"
         />
       </form>
     </>

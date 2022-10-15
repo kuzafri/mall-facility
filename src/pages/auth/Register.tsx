@@ -206,7 +206,7 @@ const Registration: React.FC = () => {
             />
           </form>
           <p className="text-sm text-center">
-            Already have an account?{" "}
+            Already have an account?
             <span className="text-primary" onClick={() => goTo("/login")}>
               Sign In
             </span>
