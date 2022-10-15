@@ -6,7 +6,7 @@ import BaseButton from "components/Base/BaseButton";
 import PublicHeader from "components/Layout/PublicHeader";
 
 /* Helpers */
-import { ToolbarTransitionHelper } from "helpers";
+import { getLocalStorage, ToolbarTransitionHelper } from "helpers";
 
 /* Hooks */
 import useToastify from "hooks/useToastify";
@@ -24,7 +24,8 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { PhoneIcon, CheckIcon, EmailIcon, LockIcon } from "@chakra-ui/icons";
+import { EmailIcon, LockIcon } from "@chakra-ui/icons";
+import { authFactory } from "modules";
 
 const Login: React.FC = () => {
   const { showToast } = useToastify();
@@ -51,16 +52,14 @@ const Login: React.FC = () => {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<FormSchemaType>({
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: "ku", password: "123" },
     resolver: zodResolver(FormSchema),
   });
 
-  const onSubmitHandler: SubmitHandler<FormSchemaType> = (data: any) => {
-    // console.log(data);
-
-    if (data.email === "admin@gmail.com" && data.password === "admin") {
-      window.location.href = "/home";
-      reset({ email: "", password: "" });
+  const onSubmitHandler: SubmitHandler<FormSchemaType> = async (data: any) => {
+    if (await authFactory().login(data)) {
+      goTo("/home");
+      reset({ email: "ku", password: "123" });
     } else {
       showToast("error", "Invalid credential, please try again");
     }
@@ -82,45 +81,63 @@ const Login: React.FC = () => {
 
           <form onSubmit={handleSubmit(onSubmitHandler)} className="my-3">
             <Stack spacing={4}>
-              <p className="!mb-[-12px]">Email Address</p>
-              <InputGroup
-                width="full"
-                sx={{
-                  "--banner-color": "colors.gray.100",
-                }}
-              >
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<EmailIcon color="gray.300" />}
-                />
-                <Input
-                  type="tel"
-                  placeholder="Email Address"
-                  style={{ backgroundColor: "white" }}
-                />
-              </InputGroup>
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <>
+                    <p className="!mb-[-12px]">Email Address</p>
+                    <InputGroup
+                      width="full"
+                      sx={{
+                        "--banner-color": "colors.gray.100",
+                      }}
+                    >
+                      <InputLeftElement
+                        pointerEvents="none"
+                        children={<EmailIcon color="gray.300" />}
+                      />
+                      <Input
+                        type="text"
+                        placeholder="Email Address"
+                        style={{ backgroundColor: "white", color: "black" }}
+                        {...field}
+                      />
+                    </InputGroup>
+                  </>
+                )}
+              />
 
-              <p className="!mb-[-12px]">Password</p>
-              <InputGroup
-                width="full"
-                sx={{
-                  "--banner-color": "colors.gray.100",
-                }}
-              >
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<LockIcon color="gray.300" />}
-                />
-                <Input
-                  type="tel"
-                  placeholder="Password"
-                  style={{ backgroundColor: "white" }}
-                />
-              </InputGroup>
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <>
+                    <p className="!mb-[-12px]">Password</p>
+                    <InputGroup
+                      width="full"
+                      sx={{
+                        "--banner-color": "colors.gray.100",
+                      }}
+                    >
+                      <InputLeftElement
+                        pointerEvents="none"
+                        children={<LockIcon color="gray.300" />}
+                      />
+                      <Input
+                        type="password"
+                        placeholder="Password"
+                        style={{ backgroundColor: "white", color: "black" }}
+                        {...field}
+                      />
+                    </InputGroup>
+                  </>
+                )}
+              />
             </Stack>
 
             <p
-              className="text-sm text-primary"
+              className="text-sm text-primary mt-3 mb-3"
               onClick={() => goTo("/forgot-password")}
             >
               Forgot Password?
@@ -129,7 +146,6 @@ const Login: React.FC = () => {
             <BaseButton
               label="Log In"
               className="my-3 !bg-[#196B79] w-60 mx-auto drop-shadow-[bg-white] text-white"
-              onClick={() => goTo("/home")}
             />
           </form>
           <p className="text-sm text-black text-center">

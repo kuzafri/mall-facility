@@ -1,18 +1,37 @@
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "helpers";
-import { Auth } from "./model";
-
-export class UserApi {
-    async create(data: Auth) {
-        try {
-            const docRef = await addDoc(collection(db, "users"), {
-                first: "Ada",
-                last: "Lovelace",
-                born: 1815
-            });
-            console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
+import {
+  collection,
+  addDoc,
+  getDoc,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
+import { CrudApi, db } from "helpers";
+import { Auth, User } from "modules";
+import * as crypto from "crypto-js";
+class AuthApi extends CrudApi {
+  async register(data: User) {
+    try {
+      return await addDoc(collection(db, "users"), this.serializeData(data));
+    } catch (e) {
+      console.error("Error adding document: ", e);
     }
+  }
+
+  async login(data: any) {
+    const q = query(
+      collection(db, "users"),
+      where("email", "==", data?.email),
+      where("password", "==", crypto.SHA256(data?.password).toString())
+    );
+    try {
+      return await getDocs(q);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
 }
+
+const authApi = new AuthApi();
+
+export { authApi };

@@ -1,4 +1,7 @@
 export class CrudApi {
+  protected COLLECTION = "";
+  protected DOC = "";
+
   serializeData(data: Object) {
     const test = Object.entries(data).map(([key, value]) =>
       value === undefined ? key : null

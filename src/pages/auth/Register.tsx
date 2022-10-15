@@ -116,14 +116,14 @@ const Registration: React.FC = () => {
                   "--banner-color": "colors.gray.100",
                 }}
               >
-                <InputLeftElement
+                {/* <InputLeftElement
                   pointerEvents="none"
                   // children={<PeopleIcon color="gray.300" />}
-                />
+                /> */}
                 <Input
                   type="tel"
                   placeholder="Name"
-                  style={{ backgroundColor: "white" }}
+                  style={{ backgroundColor: "white", color: "black" }}
                 />
               </InputGroup>
 
@@ -141,7 +141,7 @@ const Registration: React.FC = () => {
                 <Input
                   type="tel"
                   placeholder="Email Address"
-                  style={{ backgroundColor: "white" }}
+                  style={{ backgroundColor: "white", color: "black" }}
                 />
               </InputGroup>
 
@@ -159,7 +159,7 @@ const Registration: React.FC = () => {
                 <Input
                   type="tel"
                   placeholder="Mobile Number"
-                  style={{ backgroundColor: "white" }}
+                  style={{ backgroundColor: "white", color: "black" }}
                 />
               </InputGroup>
 
@@ -177,7 +177,7 @@ const Registration: React.FC = () => {
                 <Input
                   type="tel"
                   placeholder="Password"
-                  style={{ backgroundColor: "white" }}
+                  style={{ backgroundColor: "white", color: "black" }}
                 />
               </InputGroup>
 
@@ -195,7 +195,7 @@ const Registration: React.FC = () => {
                 <Input
                   type="tel"
                   placeholder="Confirm Password"
-                  style={{ backgroundColor: "white" }}
+                  style={{ backgroundColor: "white", color: "black" }}
                 />
               </InputGroup>
             </Stack>
