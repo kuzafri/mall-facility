@@ -29,14 +29,10 @@ const SinglePageHeader: React.FC<SinglePageType> = (props) => {
 
   return (
     <IonHeader mode="ios" className="custom-header">
-      <IonToolbar mode="ios" className="--bg-light !pt-5 !pb-3">
+      <IonToolbar mode="ios" className="--bg-transparent !pt-5 !pb-3">
         <IonButtons slot="start">
           <IonButton onClick={backButtonHandler}>
-            <IonIcon
-              className="text-white"
-              icon={arrowBack}
-              slot="icon-only"
-            />
+            <IonIcon className="text-white" icon={arrowBack} slot="icon-only" />
           </IonButton>
         </IonButtons>
         <IonTitle className="text-xl text-white">{title}</IonTitle>

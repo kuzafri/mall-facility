@@ -65,10 +65,7 @@ const MallComplaint = () => {
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(onSubmitHandler)}
-        className="my-3 p-4 exclude"
-      >
+      <form onSubmit={handleSubmit(onSubmitHandler)} className="my-3 p-4 ">
         <Stack spacing={4}>
           <p className="!mb-[-12px]">Name</p>
           <InputGroup

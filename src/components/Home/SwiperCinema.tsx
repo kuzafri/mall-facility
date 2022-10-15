@@ -15,15 +15,6 @@ const SwiperCinema = () => {
               >
                 <div className="flex flex-row space-x-2">
                   {/* <IonImg src="assets/img/cafe.png" /> */}
-                  <div className=" pt-auto">
-                    Cafe {index}
-                    <div className="inline-block">
-                      <p className="flex items-center text-xs">
-                        {/* <FmdGoodOutlinedIcon className="!text-xl text-muted  pr-1" /> */}
-                        <span>Cafe Harapan</span>
-                      </p>
-                    </div>
-                  </div>
                 </div>
               </div>
             </SwiperSlide>

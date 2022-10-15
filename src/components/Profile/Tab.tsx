@@ -1,10 +1,17 @@
+import { IonImg } from "@ionic/react";
 import React from "react";
 import AccountDetails from "./AccountDetails";
 
 const Tab = () => {
   return (
     <>
-      <div className="relative mx-auto mt-[-3rem] w-[80%] bg-[#93b6bc] h-[100px]  rounded-lg ">
+      <div className="mx-auto px-auto ">
+        <IonImg
+          className="relative w-[40%] mx-auto top-[3rem] border-4 border-primary rounded-full"
+          src="assets/img/user.png"
+        />
+      </div>
+      <div className="relative mx-auto mt-[6rem] w-[80%] bg-[#93b6bc] h-[100px]  rounded-lg ">
         <div className="grid grid-cols-3 h-full">
           <div>
             <div className="w-auto mx-auto my-auto">
