@@ -144,3 +144,7 @@ input {
 ion-page {
   --background: "#efefef" !important;
 }
+
+.modal-wrapper > .ion-overlay-wrapper {
+  background-color: white !important;
+}

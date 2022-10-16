@@ -55,8 +55,8 @@ export const generate_token = () => {
   return b.join("");
 };
 
-export const setLocalStorage = (key: string, data: any) => {
-  return new Promise((resolve, reject) => {
+export const setLocalStorage = async (key: string, data: any) => {
+  await new Promise((resolve, reject) => {
     try {
       localStorage.setItem(key, JSON.stringify(data));
       resolve("success");
@@ -75,4 +75,15 @@ export const getLocalStorage = (key: string) => {
     console.error(error);
   }
   return data;
+};
+
+export const removeLocalStorage = async (key: string) => {
+  await new Promise((resolve, reject) => {
+    if (key) {
+      localStorage.removeItem(key);
+      resolve("success");
+    } else {
+      reject("error");
+    }
+  });
 };

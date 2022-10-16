@@ -1,14 +1,25 @@
+import React, { useEffect, useState } from "react";
 import { IonContent } from "@ionic/react";
 import MallComplaint from "components/ComplaintPage/MallComplaint";
-import PrivateHeader from "components/Layout/PrivateHeader";
-import React from "react";
+import SinglePageHeader from "components/Layout/SinglePageHeader";
+import { reportTypeFactory } from "modules";
 
-const MallComplaintPage = () => {
+const MallComplaintPage: React.FC = () => {
+  const [reportType, setReportType] = useState([]);
+
+  useEffect(() => {
+    reportTypeFactory()
+      .getReportTypes()
+      .then((data) => {
+        setReportType(data);
+      });
+  }, []);
+
   return (
     <>
-      <PrivateHeader title="Mall Complaint " />
-      <IonContent style={{ "--background": "#efefef" }}>
-        <MallComplaint />
+      <SinglePageHeader title="Mall Complaint" path="/home" />
+      <IonContent fullscreen>
+        <MallComplaint reportType={reportType} />
       </IonContent>
     </>
   );

@@ -1,14 +1,23 @@
-import { collection, addDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  query,
+  where,
+} from "firebase/firestore";
 import { db, CrudApi } from "helpers";
-import { User } from "./model";
+import { ReportType } from "./model";
 
-class UserApi extends CrudApi {
+class ReportTypeApi extends CrudApi {
   constructor() {
     super();
-    this.COLLECTION = "users";
+    this.COLLECTION = "report_types";
   }
 
-  async create(data: User) {
+  async create(data: ReportType) {
     try {
       return await addDoc(
         collection(db, this.COLLECTION),
@@ -16,6 +25,18 @@ class UserApi extends CrudApi {
       );
     } catch (e) {
       console.error("Error adding document: ", e);
+    }
+  }
+
+  async all() {
+    const q = query(
+      collection(db, "report_types"),
+      where("is_active", "==", true)
+    );
+    try {
+      return await getDocs(q);
+    } catch (error) {
+      console.error("Error retrieving document: ", error);
     }
   }
 
@@ -34,7 +55,7 @@ class UserApi extends CrudApi {
     }
   }
 
-  async update(id: string, data: User) {
+  async update(id: string, data: ReportType) {
     const docRef = doc(db, this.COLLECTION, id);
 
     try {
@@ -49,6 +70,6 @@ class UserApi extends CrudApi {
   }
 }
 
-const userApi = new UserApi();
+const reportTypeApi = new ReportTypeApi();
 
-export { userApi };
+export { reportTypeApi };

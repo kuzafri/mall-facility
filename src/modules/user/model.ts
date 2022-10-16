@@ -3,8 +3,8 @@ export class User {
   public name!: string;
   public email!: string;
   public mobile_no!: string;
-  public created_on!: string;
-  public updated_on!: string;
+  public created_at!: string;
+  public updated_at!: string;
   public role!: string;
   public token!: string;
 }

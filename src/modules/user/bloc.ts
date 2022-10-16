@@ -12,8 +12,13 @@ export const userFactory = () => {
     return await api.first(id);
   };
 
+  const updateUser = async (id: string, data: User): Promise<any> => {
+    return await api.update(id, data);
+  };
+
   return {
     createUser,
     getUser,
+    updateUser,
   };
 };

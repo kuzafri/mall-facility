@@ -1,19 +1,15 @@
-import { EmailIcon, PhoneIcon, LockIcon } from "@chakra-ui/icons";
-import {
-  Stack,
-  InputGroup,
-  InputLeftElement,
-  Input,
-  Textarea,
-  Select,
-} from "@chakra-ui/react";
+import React from "react";
+import { Stack, InputGroup, Input, Textarea, Select } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BaseButton } from "components/Base";
-import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { userAtom, reportFactory } from "modules";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useRecoilValue } from "recoil";
 import { z } from "zod";
 
-const ShopComplaint = () => {
+const ShopComplaint: React.FC<any> = ({ reportType }) => {
+  const user = useRecoilValue(userAtom);
+
   const FormSchema = z.object({
     name: z.string({
       required_error: "Name is required",
@@ -23,15 +19,16 @@ const ShopComplaint = () => {
         required_error: "Email is required",
       })
       .email({ message: "Invalid email address" }),
-    password: z.string({
-      required_error: "Password is required",
-    }),
-    cpassword: z.string({
-      required_error: "Please confirm your password",
-    }),
     mobileno: z.string({
       required_error: "Mobile number is required",
     }),
+    reportType: z.string({
+      required_error: "Type of Complaint is required",
+    }),
+    shopId: z.string({
+      required_error: "Type of Complaint is required",
+    }),
+    description: z.string().optional(),
   });
 
   type FormSchemaType = z.infer<typeof FormSchema>;
@@ -43,100 +40,120 @@ const ShopComplaint = () => {
     reset,
   } = useForm<FormSchemaType>({
     defaultValues: {
-      name: undefined,
-      email: undefined,
-      password: undefined,
-      cpassword: undefined,
+      name: user.name,
+      email: user.email,
+      mobileno: user.mobile_no,
+      reportType: undefined,
+      shopId: undefined,
+      description: undefined,
     },
     resolver: zodResolver(FormSchema),
   });
 
-  const onSubmitHandler: SubmitHandler<FormSchemaType> = (data: any) => {
-    console.log(data);
+  const onSubmitHandler: SubmitHandler<FormSchemaType> = async (data: any) => {
+    await reportFactory().createReport(data);
 
-    if (data.email === "admin@gmail.com" && data.password === "admin") {
-      if (data.password === "admin" && data.cpassword === "admin") {
-        window.location.href = "/verification";
-        reset({
-          name: "",
-          email: "",
-          password: "",
-          cpassword: "",
-          mobileno: "",
-        });
-      }
-    } else {
-      showToast("error", "Invalid credential, please try again");
-    }
+    reset({
+      name: undefined,
+      email: undefined,
+      mobileno: undefined,
+      reportType: undefined,
+      shopId: undefined,
+      description: undefined,
+    });
   };
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmitHandler)} className="my-3 p-4 ">
         <Stack spacing={4}>
-          <p className="!mb-[-12px] text-[#7b7b7b]">Name</p>
-          <InputGroup
-            width="full"
-            sx={{
-              "--banner-color": "colors.gray.100",
-            }}
-          >
-            <Input type="tel" style={{ backgroundColor: "white" }} />
-          </InputGroup>
+          <Controller
+            name="name"
+            control={control}
+            render={({ field }) => (
+              <>
+                <p className="!mb-[-12px] text-[#7b7b7b]">Name</p>
+                <InputGroup
+                  width="full"
+                  sx={{
+                    "--banner-color": "colors.gray.100",
+                  }}
+                >
+                  <Input type="text" bg="white" {...field} />
+                </InputGroup>
+              </>
+            )}
+          />
 
-          <p className="!mb-[-12px] text-[#7b7b7b]">Email Address</p>
-          <InputGroup
-            width="full"
-            sx={{
-              "--banner-color": "colors.gray.100",
-            }}
-          >
-            <Input type="tel" style={{ backgroundColor: "white" }} />
-          </InputGroup>
+          <Controller
+            name="email"
+            control={control}
+            render={({ field }) => (
+              <>
+                <p className="!mb-[-12px] text-[#7b7b7b]">Email Address</p>
+                <InputGroup
+                  width="full"
+                  sx={{
+                    "--banner-color": "colors.gray.100",
+                  }}
+                >
+                  <Input type="email" bg="white" {...field} />
+                </InputGroup>
+              </>
+            )}
+          />
 
-          <p className="!mb-[-12px] text-[#7b7b7b]">Mobile Number</p>
-          <InputGroup
-            width="full"
-            sx={{
-              "--banner-color": "colors.gray.100",
-            }}
-          >
-            <Input type="tel" style={{ backgroundColor: "white" }} />
-          </InputGroup>
+          <Controller
+            name="mobileno"
+            control={control}
+            render={({ field }) => (
+              <>
+                <p className="!mb-[-12px] text-[#7b7b7b]">Mobile Number</p>
+                <InputGroup
+                  width="full"
+                  sx={{
+                    "--banner-color": "colors.gray.100",
+                  }}
+                >
+                  <Input type="tel" bg="white" {...field} />
+                </InputGroup>
+              </>
+            )}
+          />
 
-          <p className="!mb-[-12px] text-[#7b7b7b]">Shop</p>
-          <InputGroup
-            width="full"
-            sx={{
-              "--banner-color": "colors.gray.100",
-            }}
-          >
-            <Select
-              placeholder="Select shop"
-              style={{ backgroundColor: "white", color: "gray", width: "100%" }}
-            >
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-            </Select>
-          </InputGroup>
+          <Controller
+            name="reportType"
+            control={control}
+            render={({ field }) => (
+              <>
+                <p className="!mb-[-12px] text-[#7b7b7b]">Type of Complaint</p>
+                <Select placeholder="Select option" bg="white" {...field}>
+                  {reportType.map((type: any) => (
+                    <option key={"test" + type.id} value={type.id}>
+                      {type.name}
+                    </option>
+                  ))}
+                </Select>
+              </>
+            )}
+          />
 
-          <p className="!mb-[-12px] text-[#7b7b7b]">Type of Complaint</p>
-          <InputGroup
-            width="full"
-            sx={{
-              "--banner-color": "colors.gray.100",
-            }}
-          >
-            <Select
-              placeholder="Select type of complaint"
-              style={{ backgroundColor: "white", color: "gray", width: "100%" }}
-            >
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-            </Select>
-          </InputGroup>
+          <Controller
+            name="shopId"
+            control={control}
+            render={({ field }) => (
+              <>
+                <p className="!mb-[-12px] text-[#7b7b7b]">Shop Name</p>
+                <Select placeholder="Select option" bg="white" {...field}>
+                  {reportType.map((type: any) => (
+                    <option key={"test" + type.id} value={type.id}>
+                      {type.name}
+                    </option>
+                  ))}
+                </Select>
+              </>
+            )}
+          />
 
           <p className="!mb-[-12px] text-[#7b7b7b]">Image of Complaint</p>
           <InputGroup
@@ -148,15 +165,23 @@ const ShopComplaint = () => {
             <Input type="file" className="text-black" />
           </InputGroup>
 
-          <p className="!mb-[-12px] text-[#7b7b7b]">Description</p>
-          <InputGroup
-            width="full"
-            sx={{
-              "--banner-color": "colors.gray.100",
-            }}
-          >
-            <Textarea style={{ backgroundColor: "white" }} />
-          </InputGroup>
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <>
+                <p className="!mb-[-12px] text-[#7b7b7b]">Description</p>
+                <InputGroup
+                  width="full"
+                  sx={{
+                    "--banner-color": "colors.gray.100",
+                  }}
+                >
+                  <Textarea bg="white" {...field} />
+                </InputGroup>
+              </>
+            )}
+          />
         </Stack>
 
         <BaseButton
@@ -169,6 +194,3 @@ const ShopComplaint = () => {
 };
 
 export default ShopComplaint;
-function showToast(arg0: string, arg1: string) {
-  throw new Error("Function not implemented.");
-}

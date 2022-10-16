@@ -11,7 +11,7 @@ export const authFactory = () => {
   const register = async (data: Auth) => {
     try {
       data.password = crypto.SHA256(data.confirm_password!).toString();
-      data.created_on = new Date().toString();
+      data.created_at = new Date().toString();
       data.role = "1";
       data.token = generate_token();
 

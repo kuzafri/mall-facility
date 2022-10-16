@@ -5,8 +5,8 @@ export class Auth {
   public name!: string;
   public password!: string;
   public confirm_password?: string;
-  public created_on!: string;
-  public updated_on!: string;
+  public created_at!: string;
+  public updated_at!: string;
   public role!: string;
   public token!: string;
 }
