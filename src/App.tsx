@@ -3,11 +3,13 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RecoilRoot } from "recoil";
+import RecoilNexus from "recoil-nexus";
 
 /* Routes */
 import PublicRoute from "routes/PublicRoute";
 import SingleRoute from "routes/SingleRoute";
 import PrivateRoute from "routes/PrivateRoute";
+import TenantRoute from "routes/TenantRoute";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -48,6 +50,8 @@ import TenantHome from "pages/tenant/TenantHome";
 import TenantProfile from "pages/tenant/TenantProfile";
 import TenantComplaintList from "pages/tenant/TenantComplaintList";
 import TenantMallComplaintPage from "pages/tenant/TenantMallComplaintPage";
+import TenantSendVoucher from "pages/tenant/TenantSendVoucher";
+import MallLayout from "pages/MallLayout";
 
 setupIonicReact({
   swipeBackEnabled: false,
@@ -59,6 +63,7 @@ const App: React.FC = () => (
   <IonApp>
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
+        <RecoilNexus></RecoilNexus>
         <IonReactRouter>
           <IonRouterOutlet>
             {/* Public Route ---------------------------------------------*/}
@@ -71,11 +76,12 @@ const App: React.FC = () => (
             <PrivateRoute exact path="/news" component={News} />
             <PrivateRoute exact path="/profile" component={Profile} />
 
-            <PrivateRoute exact path="/hometenant" component={TenantHome} />
-            <PrivateRoute exact path="/newstenant" component={TenantNews} />
-            <PrivateRoute
+            {/* Tenant Module Routing -------------------------------------*/}
+            <TenantRoute exact path="/tenanthome" component={TenantHome} />
+            <TenantRoute exact path="/tenantnews" component={TenantNews} />
+            <TenantRoute
               exact
-              path="/profiletenant"
+              path="/tenantprofile"
               component={TenantProfile}
             />
 
@@ -97,6 +103,8 @@ const App: React.FC = () => (
               path="/shopcomplaintpage"
               component={ShopComplaintPage}
             />
+
+            {/* Tenant Module Routing -------------------------------------*/}
             <SingleRoute
               exact
               path="/tenantmallcomplaintpage"
@@ -106,6 +114,11 @@ const App: React.FC = () => (
               exact
               path="/TenantComplaintList"
               component={TenantComplaintList}
+            />
+            <SingleRoute
+              exact
+              path="/tenantsendvoucher"
+              component={TenantSendVoucher}
             />
             {/* ... */}
             {/* Single Route ----------------------------------------------*/}
@@ -126,6 +139,7 @@ const App: React.FC = () => (
               path="/shopcomplaintpage"
               component={ShopComplaintPage}
             />
+            <SingleRoute exact path="/malllayout" component={MallLayout} />
             {/* ... */}
 
             <Route exact path="/">

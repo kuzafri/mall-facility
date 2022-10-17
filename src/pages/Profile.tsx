@@ -22,7 +22,7 @@ const Profile: React.FC = () => {
     <>
       <PrivateHeader title="Profile" />
       <IonContent>
-        <div className="mx-3">
+        <div className="mx-3 mb-5">
           <Tab />
           <AccountDetails />
           <Button />

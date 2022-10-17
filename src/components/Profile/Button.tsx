@@ -1,20 +1,16 @@
-import BaseButton from "components/Base/BaseButton";
 import React from "react";
 
-const Button = () => {
+const Button: React.FC = () => {
   return (
     <>
-      <div className="w-[80%] h-[6%] bg-[#93b6bc] mx-auto mt-6 rounded-lg p-3">
-        Change Password
+      <div className="flex flex-col space-y-3 my-5 text-white">
+        <div className="bg-[#93b6bc] rounded-lg p-3">
+          <p>Change Password</p>
+        </div>
+        <div className="bg-[#93b6bc] rounded-lg p-3">
+          <p>Term & Condition</p>
+        </div>
       </div>
-      <div className="w-[80%] h-[6%] bg-[#93b6bc] mx-auto mt-6 rounded-lg p-3">
-        Term & Condition
-      </div>
-
-      <BaseButton
-        label="Log Out"
-        className="my-3 !bg-[#196B79] w-[60%] mt-3 !mx-auto drop-shadow-[bg-white] text-white"
-      />
     </>
   );
 };

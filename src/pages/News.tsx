@@ -1,13 +1,15 @@
+import { IonContent } from "@ionic/react";
 import PrivateHeader from "components/Layout/PrivateHeader";
-import PublicHeader from "components/Layout/PublicHeader";
 import Post from "components/News/Post";
 import React from "react";
 
-const News = () => {
+const News: React.FC = () => {
   return (
     <>
-      <PublicHeader title="News" />
-      <Post />
+      <PrivateHeader title="News" />
+      <IonContent fullscreen>
+        <Post />
+      </IonContent>
     </>
   );
 };

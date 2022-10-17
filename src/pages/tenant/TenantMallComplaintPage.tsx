@@ -1,10 +1,15 @@
+import { IonContent } from "@ionic/react";
 import MallComplaint from "components/ComplaintPage/MallComplaint";
+import TenantSinglePageHeader from "components/Layout/TenantSinglePageHeader";
 import React from "react";
 
 const MallComplaintPage = () => {
   return (
     <>
-      <MallComplaint />
+      <TenantSinglePageHeader title="Mall Complaint" />
+      <IonContent>
+        <MallComplaint />
+      </IonContent>
     </>
   );
 };

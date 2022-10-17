@@ -2,8 +2,11 @@ import React from "react";
 import { InputGroup, Input, Button, InputRightElement } from "@chakra-ui/react";
 import { IonContent, IonImg } from "@ionic/react";
 import SinglePageHeader from "components/Layout/SinglePageHeader";
+import useToastify from "hooks/useToastify";
 
 const TenantSendVoucher: React.FC = () => {
+  const { showToast } = useToastify();
+
   return (
     <>
       <SinglePageHeader title="Send Voucher" />
@@ -26,7 +29,13 @@ const TenantSendVoucher: React.FC = () => {
                 <InputRightElement
                   width="4.5rem"
                   children={
-                    <Button colorScheme="teal" size="sm">
+                    <Button
+                      colorScheme="teal"
+                      size="sm"
+                      onClick={() =>
+                        showToast("success", "Voucher has been sent!")
+                      }
+                    >
                       Send
                     </Button>
                   }
