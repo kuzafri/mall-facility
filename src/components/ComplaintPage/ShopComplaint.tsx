@@ -7,7 +7,7 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useRecoilValue } from "recoil";
 import { z } from "zod";
 
-const ShopComplaint: React.FC<any> = ({ reportType }) => {
+const ShopComplaint: React.FC<any> = ({ reportType, shopList }) => {
   const user = useRecoilValue(userAtom);
 
   const FormSchema = z.object({
@@ -22,10 +22,10 @@ const ShopComplaint: React.FC<any> = ({ reportType }) => {
     mobileno: z.string({
       required_error: "Mobile number is required",
     }),
-    reportType: z.string({
+    report_type_id: z.string({
       required_error: "Type of Complaint is required",
     }),
-    shopId: z.string({
+    shop_id: z.string({
       required_error: "Type of Complaint is required",
     }),
     description: z.string().optional(),
@@ -43,8 +43,8 @@ const ShopComplaint: React.FC<any> = ({ reportType }) => {
       name: user.name,
       email: user.email,
       mobileno: user.mobile_no,
-      reportType: undefined,
-      shopId: undefined,
+      report_type_id: undefined,
+      shop_id: undefined,
       description: undefined,
     },
     resolver: zodResolver(FormSchema),
@@ -57,8 +57,8 @@ const ShopComplaint: React.FC<any> = ({ reportType }) => {
       name: undefined,
       email: undefined,
       mobileno: undefined,
-      reportType: undefined,
-      shopId: undefined,
+      report_type_id: undefined,
+      shop_id: undefined,
       description: undefined,
     });
   };
@@ -122,7 +122,7 @@ const ShopComplaint: React.FC<any> = ({ reportType }) => {
           />
 
           <Controller
-            name="reportType"
+            name="report_type_id"
             control={control}
             render={({ field }) => (
               <>
@@ -139,15 +139,15 @@ const ShopComplaint: React.FC<any> = ({ reportType }) => {
           />
 
           <Controller
-            name="shopId"
+            name="shop_id"
             control={control}
             render={({ field }) => (
               <>
                 <p className="!mb-[-12px] text-[#7b7b7b]">Shop Name</p>
                 <Select placeholder="Select option" bg="white" {...field}>
-                  {reportType.map((type: any) => (
-                    <option key={"test" + type.id} value={type.id}>
-                      {type.name}
+                  {shopList.map((shop: any) => (
+                    <option key={"test" + shop.id} value={shop.id}>
+                      {shop.name}
                     </option>
                   ))}
                 </Select>

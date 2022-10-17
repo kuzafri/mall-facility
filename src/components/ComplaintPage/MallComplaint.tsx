@@ -22,7 +22,7 @@ const MallComplaint: React.FC<any> = ({ reportType }) => {
     mobileno: z.string({
       required_error: "Mobile number is required",
     }),
-    reportType: z.string({
+    report_type_id: z.string({
       required_error: "Type of Complaint is required",
     }),
     description: z.string().optional(),
@@ -40,7 +40,7 @@ const MallComplaint: React.FC<any> = ({ reportType }) => {
       name: user.name,
       email: user.email,
       mobileno: user.mobile_no,
-      reportType: undefined,
+      report_type_id: undefined,
       description: undefined,
     },
     resolver: zodResolver(FormSchema),
@@ -53,7 +53,7 @@ const MallComplaint: React.FC<any> = ({ reportType }) => {
       name: undefined,
       email: undefined,
       mobileno: undefined,
-      reportType: undefined,
+      report_type_id: undefined,
       description: undefined,
     });
   };
@@ -117,7 +117,7 @@ const MallComplaint: React.FC<any> = ({ reportType }) => {
           />
 
           <Controller
-            name="reportType"
+            name="report_type_id"
             control={control}
             render={({ field }) => (
               <>

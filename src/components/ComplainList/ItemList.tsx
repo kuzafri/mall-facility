@@ -1,38 +1,29 @@
-import useNavigate from "hooks/useNavigate";
+import { IonIcon, IonText } from "@ionic/react";
+import { chevronForward } from "ionicons/icons";
 import React from "react";
 
-const ItemList = () => {
-  const { goTo } = useNavigate();
-
+const TenantReceivedList: React.FC = (props: any) => {
   return (
-    <>
-      {" "}
-      {[...Array(4)].map((_, index) => (
+    <div className="mt-10 my-5 mx-3 space-y-3">
+      {[...Array(15)].map((_, index) => (
         <div
-          key={`item-${index}`}
-          className="bg-white m-[1rem] rounded-lg p-5 border border-[#ffeeee] shadow-lg shadow-light"
-          onClick={() => goTo("/complaindetails", "forward")}
+          key={`DUMMYCOMPLAINT-${index}`}
+          className="bg-white p-5 rounded-lg shadow-md flex flex-row justify-between items-center"
         >
-          <div className="grid grid-cols-2 grid-row-1 text-black">
-            <div className="grid grid-cols-1 grid-row-2 text-sm">
-              <div className="font-bold mt-2">Complaint #7324</div>
-              <div>
-                <span>Status : Pending</span>
-              </div>
-              <div>
-                <span>12/06/2022</span>
-              </div>
-            </div>
-            <div className="grid items-right my-auto text-sm ">
-              <div className="absolute float-right my-auto">
-                <i className="fa-solid fa-chevron-right absolute text-black"></i>
-              </div>
+          <div>
+            <h3>Complaint #number</h3>
+            <div className="mt-3">
+              <p className="text-sm">
+                Status: <IonText color="success">Reviewed</IonText>
+              </p>
+              <p className="text-sm">Type: Technical</p>
             </div>
           </div>
+          <IonIcon icon={chevronForward} className="text-2xl" />
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
-export default ItemList;
+export default TenantReceivedList;

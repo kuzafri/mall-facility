@@ -8,7 +8,7 @@ export const reportTypeFactory = () => {
     return await api.create(data);
   };
 
-  const getReportTypes = async (): Promise<any> => {
+  const getReportTypes = async (): Promise<ReportType[]> => {
     const result = await api.all();
 
     const data: any = [];

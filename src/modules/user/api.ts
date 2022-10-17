@@ -1,4 +1,13 @@
-import { collection, addDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  where,
+  query,
+} from "firebase/firestore";
 import { db, CrudApi } from "helpers";
 import { User } from "./model";
 
@@ -29,6 +38,20 @@ class UserApi extends CrudApi {
       } else {
         return null;
       }
+    } catch (error) {
+      console.error("Error retrieving document: ", error);
+    }
+  }
+
+  async firstByToken(token: string) {
+    try {
+      const q = query(
+        collection(db, this.COLLECTION),
+        where("token", "==", token)
+      );
+
+      return await getDocs(q);
+
     } catch (error) {
       console.error("Error retrieving document: ", error);
     }

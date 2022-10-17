@@ -9,6 +9,7 @@ import {
 import { CrudApi, db } from "helpers";
 import { Auth, User } from "modules";
 import * as crypto from "crypto-js";
+
 class AuthApi extends CrudApi {
   async register(data: User) {
     try {
@@ -29,6 +30,10 @@ class AuthApi extends CrudApi {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+  }
+
+  async changePassword(data: any){
+    
   }
 }
 

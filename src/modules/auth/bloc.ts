@@ -2,8 +2,7 @@ import { Auth } from "modules";
 import { userFactory } from "modules";
 import { authApi } from "./api";
 import * as crypto from "crypto-js";
-import { generate_token, setLocalStorage } from "helpers";
-import { applyActionCode } from "firebase/auth";
+import { generate_token } from "helpers";
 
 export const authFactory = () => {
   const api = authApi;
@@ -11,7 +10,6 @@ export const authFactory = () => {
   const register = async (data: Auth) => {
     try {
       data.password = crypto.SHA256(data.confirm_password!).toString();
-      data.created_at = new Date().toString();
       data.role = "1";
       data.token = generate_token();
 
@@ -34,8 +32,8 @@ export const authFactory = () => {
     }
   };
 
-  const login = async (data: any): Promise<Boolean> => {
-    let success = false;
+  const login = async (data: any): Promise<any> => {
+    let userData;
 
     try {
       const result = await api.login(data);
@@ -43,23 +41,20 @@ export const authFactory = () => {
       if (result!.size > 0) {
         result?.forEach(async (doc) => {
           if (doc.data()) {
-            const userData = {
+            return userData = {
               name: doc.data().name,
               email: doc.data().email,
               token: doc.data().token,
               role: doc.data().role,
               mobile_no: doc.data().mobile_no,
             };
-
-            setLocalStorage("user", userData);
-            return (success = true);
           }
         });
       }
-      return success;
+      return userData;
     } catch (error) {
       console.error(error);
-      return success;
+      return userData;
     }
   };
 

@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { IonContent } from "@ionic/react";
 import ShopComplaint from "components/ComplaintPage/ShopComplaint";
 import SinglePageHeader from "components/Layout/SinglePageHeader";
-import { reportTypeFactory } from "modules";
+import { ReportType, Shop, reportTypeFactory, shopFactory } from "modules";
 
 const ShopComplaintPage: React.FC = () => {
-  const [reportType, setReportType] = useState([]);
+  const [reportType, setReportType] = useState<ReportType[]>([]);
+  const [shopList, setShopList] = useState<Shop[]>([]);
 
   useEffect(() => {
     reportTypeFactory()
@@ -13,13 +14,19 @@ const ShopComplaintPage: React.FC = () => {
       .then((data) => {
         setReportType(data);
       });
+
+    shopFactory()
+      .getShops()
+      .then((data) => {
+        setShopList(data);
+      });
   }, []);
 
   return (
     <>
       <SinglePageHeader title="Shop Complaint" path="/home" />
       <IonContent>
-        <ShopComplaint reportType={reportType} />
+        <ShopComplaint reportType={reportType} shopList={shopList} />
       </IonContent>
     </>
   );

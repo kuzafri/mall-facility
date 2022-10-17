@@ -4,7 +4,7 @@ import { User } from "./model";
 
 export const userAtom = atom<User>({
   key: "userState",
-  default: getLocalStorage("user") as User,
+  default: getLocalStorage('user') as User,
 });
 
 export const userSelector = selector({
@@ -13,7 +13,7 @@ export const userSelector = selector({
     const user = get(userAtom);
     return user;
   },
-  set: ({ set }, userData) => {
-    set(userAtom, userData);
-  },
+  set: ({set}, userData) => {
+    set(userAtom, userData)
+  }
 });

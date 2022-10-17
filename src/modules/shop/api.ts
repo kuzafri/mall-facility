@@ -11,17 +11,15 @@ import {
   DocumentData,
 } from "firebase/firestore";
 import { db, CrudApi } from "helpers";
-import { Report } from "./model";
-import { getRecoil } from "recoil-nexus";
-import { User, userAtom, userFactory } from "modules";
+import { Shop } from "./model";
 
-class ReportApi extends CrudApi {
+class ShopApi extends CrudApi {
   constructor() {
     super();
-    this.COLLECTION = "reports";
+    this.COLLECTION = "shops";
   }
 
-  async create(data: Report) {
+  async create(data: Shop) {
     try {
       return await addDoc(
         collection(db, this.COLLECTION),
@@ -34,16 +32,8 @@ class ReportApi extends CrudApi {
 
   async all(scope?: string) {
     let q: Query<DocumentData>;
-    const user = getRecoil(userAtom);
-    const result = (await userFactory().getUserByToken(user.token));
 
     switch (scope) {
-      case "tenant":
-        q = query(
-          collection(db, this.COLLECTION),
-          where("shopId", "==", result[0].id)
-        );
-        break;
       default:
         q = query(collection(db, this.COLLECTION));
     }
@@ -70,7 +60,7 @@ class ReportApi extends CrudApi {
     }
   }
 
-  async update(id: string, data: Report) {
+  async update(id: string, data: Shop) {
     const docRef = doc(db, this.COLLECTION, id);
 
     try {
@@ -85,6 +75,6 @@ class ReportApi extends CrudApi {
   }
 }
 
-const reportApi = new ReportApi();
+const shopApi = new ShopApi();
 
-export { reportApi };
+export { shopApi };

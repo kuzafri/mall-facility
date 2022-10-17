@@ -1,12 +1,12 @@
 import { userAtom, userFactory } from "modules/user";
 import { getRecoil } from "recoil-nexus";
-import { reportApi } from "./api";
-import { Report } from "modules";
+import { shopApi } from "./api";
+import { Shop } from "modules";
 
-export const reportFactory = () => {
-  const api = reportApi;
+export const shopFactory = () => {
+  const api = shopApi;
 
-  const createReport = async (data: Report): Promise<any> => {
+  const createShop = async (data: Shop): Promise<any> => {
     const user = getRecoil(userAtom);
     const responseUser = await userFactory().getUserByToken(user.token);
 
@@ -14,7 +14,7 @@ export const reportFactory = () => {
     return await api.create(data);
   };
 
-  const getReports = async (query?: string): Promise<any> => {
+  const getShops = async (query?: string): Promise<Shop[]> => {
     const result = await api.all(query);
 
     const data: any = [];
@@ -26,18 +26,18 @@ export const reportFactory = () => {
     return data;
   };
 
-  const getReport = async (id: string): Promise<any> => {
+  const getShop = async (id: string): Promise<any> => {
     return await api.first(id);
   };
 
-  const updateReport = async (id: string, data: Report): Promise<any> => {
+  const updateShop = async (id: string, data: Shop): Promise<any> => {
     return await api.update(id, data);
   };
 
   return {
-    createReport,
-    getReports,
-    getReport,
-    updateReport,
+    createShop,
+    getShops,
+    getShop,
+    updateShop,
   };
 };
