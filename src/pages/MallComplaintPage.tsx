@@ -1,28 +1,62 @@
 import React, { useEffect, useState } from "react";
-import { IonContent } from "@ionic/react";
-import MallComplaint from "components/ComplaintPage/MallComplaint";
+import { IonContent, IonFooter, IonImg } from "@ionic/react";
+import Card from "components/ComplaintDetails/Card";
 import SinglePageHeader from "components/Layout/SinglePageHeader";
-import { ReportType, reportTypeFactory } from "modules";
+import { Report, reportFactory, userAtom } from "modules";
+import { BaseButton, RenderIf } from "components/Base";
+import { useRecoilValue } from "recoil";
 
-const MallComplaintPage: React.FC = () => {
-  const [reportType, setReportType] = useState<ReportType[]>([]);
+const ComplaintDetails: React.FC = (props: any) => {
+  const id = props.match.params.id ?? "";
+  const user = useRecoilValue(userAtom);
+
+  const [complaint, setComplaint] = useState<Report>();
 
   useEffect(() => {
-    reportTypeFactory()
-      .getReportTypes()
-      .then((data) => {
-        setReportType(data);
+    reportFactory()
+      .getReport(id)
+      .then((complaint: Report) => {
+        setComplaint(complaint);
       });
   }, []);
 
   return (
     <>
-      <SinglePageHeader title="Mall Complaint" path="/home" />
+      <SinglePageHeader title="Complaint Details" />
       <IonContent fullscreen>
-        <MallComplaint reportType={reportType} />
+        <div>
+          <IonImg
+            class=" w-[70%] mx-auto mt-5"
+            src="assets/img/undraw_wait_in_line_o2aq.svg"
+          />
+        </div>
+        <Card complaint={complaint} />
       </IonContent>
+      <RenderIf condition={user.id !== complaint?.user_id}>
+        <IonFooter className="px-3">
+          <div className="flex flex-col space-y-3 my-3">
+            <BaseButton label="Accept" />
+            <BaseButton
+              label="Reject"
+              className="!bg-transparent border !drop-shadow-none border-primary text-primary"
+            />
+          </div>
+        </IonFooter>
+      </RenderIf>
+
+      <RenderIf condition={user.id === complaint?.shop_id}>
+        <IonFooter className="px-3">
+          <div className="flex flex-col space-y-3 my-3">
+            <BaseButton label="Accept" />
+            <BaseButton
+              label="Reject"
+              className="!bg-transparent border !drop-shadow-none border-primary text-primary"
+            />
+          </div>
+        </IonFooter>
+      </RenderIf>
     </>
   );
 };
 
-export default MallComplaintPage;
+export default ComplaintDetails;

@@ -40,8 +40,8 @@ import Login from "pages/auth/Login";
 import Registration from "pages/auth/Register";
 import News from "pages/News";
 import Profile from "pages/Profile";
-import ComplainList from "pages/ComplaintList";
-import ComplainDetails from "pages/ComplaintDetails";
+import ComplaintList from "pages/ComplaintList";
+import ComplaintDetails from "pages/ComplaintDetails";
 import MallComplaintPage from "pages/MallComplaintPage";
 import ShopComplaintPage from "pages/ShopComplaintPage";
 
@@ -51,8 +51,6 @@ import TenantProfile from "pages/tenant/TenantProfile";
 import TenantComplaintList from "pages/tenant/TenantComplaintList";
 import TenantMallComplaintPage from "pages/tenant/TenantMallComplaintPage";
 import TenantSendVoucher from "pages/tenant/TenantSendVoucher";
-import MallLayout from "pages/MallLayout";
-import Voucher from "pages/Voucher";
 
 setupIonicReact({
   swipeBackEnabled: false,
@@ -88,11 +86,11 @@ const App: React.FC = () => (
 
             {/* Single Route ----------------------------------------------*/}
             <SingleRoute exact path="/notification" component={Notification} />
-            <SingleRoute exact path="/complainlist" component={ComplainList} />
+            <SingleRoute exact path="/complaintlist" component={ComplaintList} />
             <SingleRoute
               exact
-              path="/complaindetails"
-              component={ComplainDetails}
+              path="/complaint/:id"
+              component={ComplaintDetails}
             />
             <SingleRoute
               exact
@@ -124,11 +122,11 @@ const App: React.FC = () => (
             {/* ... */}
             {/* Single Route ----------------------------------------------*/}
             <SingleRoute exact path="/notification" component={Notification} />
-            <SingleRoute exact path="/complainlist" component={ComplainList} />
+            <SingleRoute exact path="/ComplaintList" component={ComplaintList} />
             <SingleRoute
               exact
-              path="/complaindetails"
-              component={ComplainDetails}
+              path="/ComplaintDetails"
+              component={ComplaintDetails}
             />
             <SingleRoute
               exact
@@ -140,8 +138,6 @@ const App: React.FC = () => (
               path="/shopcomplaintpage"
               component={ShopComplaintPage}
             />
-            <SingleRoute exact path="/malllayout" component={MallLayout} />
-            <SingleRoute exact path="/voucher" component={Voucher} />
             {/* ... */}
 
             <Route exact path="/">

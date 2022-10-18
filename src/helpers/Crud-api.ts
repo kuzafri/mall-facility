@@ -1,16 +1,20 @@
 export class CrudApi {
   protected COLLECTION = "";
-  protected DOC = "";
+  protected DOC: any;
 
   serializeData(data: Object) {
     const test = Object.entries(data).map(([key, value]) =>
-      value === undefined ? key : null
+      typeof value !== "object" &&
+      (value === undefined || value.trim().length === 0)
+        ? key
+        : null
     );
 
     test.forEach((testData) => {
       delete (data as any)[testData!];
     });
 
+    data = { ...data, created_at: new Date().toString() };
     return data;
   }
 }

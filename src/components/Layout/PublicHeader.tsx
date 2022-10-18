@@ -38,7 +38,7 @@ const PublicHeader: React.ForwardRefRenderFunction<any, PublicHeaderType> = (
             <IonIcon className="text-white" icon={arrowBack} slot="icon-only" />
           </IonButton>
         </IonButtons>
-        <IonTitle className="text-xl text-primary">{title}</IonTitle>
+        <IonTitle className="text-xl text-white">{title}</IonTitle>
       </IonToolbar>
     </IonHeader>
   );

@@ -42,6 +42,7 @@ export const authFactory = () => {
         result?.forEach(async (doc) => {
           if (doc.data()) {
             return (userData = {
+              id: doc.id,
               name: doc.data().name,
               email: doc.data().email,
               token: doc.data().token,

@@ -1,4 +1,4 @@
-import { userAtom, userFactory } from "modules/user";
+import { userAtom, userFactory, reportTypeFactory, shopFactory } from "modules";
 import { getRecoil } from "recoil-nexus";
 import { reportApi } from "./api";
 import { Report } from "modules";
@@ -9,8 +9,23 @@ export const reportFactory = () => {
   const createReport = async (data: Report): Promise<any> => {
     const user = getRecoil(userAtom);
     const responseUser = await userFactory().getUserByToken(user.token);
+    const report_type = await reportTypeFactory().getReportType(
+      data.report_type_id
+    );
 
-    data = { ...data, user_id: responseUser[0].id };
+    let shop;
+    if (data.shop_id) {
+      shop = await shopFactory().getShop(data.shop_id);
+    }
+
+    data = {
+      ...data,
+      user_id: responseUser[0].id,
+      user: responseUser[0],
+      shop,
+      report_type,
+      status: "Pending",
+    };
     return await api.create(data);
   };
 

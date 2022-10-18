@@ -18,7 +18,7 @@ const Profile: React.FC = () => {
     // TODO: Trigger Alert Confirmation
     setUser({} as any);
     await removeLocalStorage("user");
-    goTo("/landing", "forward", "pop");
+    window.location.href = "/login";
   };
 
   return (

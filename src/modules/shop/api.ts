@@ -60,6 +60,18 @@ class ShopApi extends CrudApi {
     }
   }
 
+  async firstByOwner(id: string) {
+    try {
+      const q = query(
+        collection(db, this.COLLECTION),
+        where("owner", "==", id)
+      );
+      return await getDocs(q);
+    } catch (error) {
+      console.error("Error retrieving document: ", error);
+    }
+  }
+
   async update(id: string, data: Shop) {
     const docRef = doc(db, this.COLLECTION, id);
 

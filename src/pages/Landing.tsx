@@ -14,7 +14,7 @@ const Landing: React.FC = () => {
     <>
       <IonContent fullscreen style={{ "--background": "#4B727A" }}>
         <div className="flex flex-col relative mt-[12rem] px-5 h-full space-y-3">
-          <div className="flex flex-col justify-center  h-[150px] m-12">
+          <div className="flex flex-col justify-center  h-[150px] m-6">
             <IonImg src="assets/img/logo.png" className=" h-[120px]" />
             <h3 className="text-lg text-center">Odessey Shopping Center</h3>
             <p className="text-white text-center italic">
@@ -28,7 +28,7 @@ const Landing: React.FC = () => {
           />
           <BaseButton
             label="Sign Up"
-            className="bg-white !text-black w-60 mx-auto !drop-shadow"
+            className="!bg-white !text-black w-60 mx-auto"
             onClick={() => goTo("/register")}
           />
           {/* <div className="landing !bottom-0 h-full w-full opacity-[8]"></div> */}

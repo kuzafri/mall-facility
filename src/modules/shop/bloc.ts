@@ -30,6 +30,18 @@ export const shopFactory = () => {
     return await api.first(id);
   };
 
+  const getShopByOwner = async (id: string): Promise<any> => {
+    const result = await api.firstByOwner(id);
+
+    const data: any = [];
+    result?.forEach((doc) => {
+      const tempData = { id: doc.id, ...doc.data() };
+      data.push(tempData);
+    });
+
+    return data;
+  };
+
   const updateShop = async (id: string, data: Shop): Promise<any> => {
     return await api.update(id, data);
   };
@@ -38,6 +50,7 @@ export const shopFactory = () => {
     createShop,
     getShops,
     getShop,
+    getShopByOwner,
     updateShop,
   };
 };

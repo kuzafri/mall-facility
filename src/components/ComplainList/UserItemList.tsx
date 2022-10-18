@@ -5,10 +5,11 @@ import { Report } from "modules";
 import { RenderIf } from "components/Base";
 import useNavigate from "hooks/useNavigate";
 
-const TenantReceivedList: React.FC<any> = (props: any) => {
+const UserItemList: React.FC<any> = (props: any) => {
   const { goTo } = useNavigate();
+
   return (
-    <div className="mt-10 my-5 mx-3 space-y-3">
+    <div className="my-5 mx-3 space-y-3">
       <RenderIf condition={props.complaintList.length > 0}>
         {props.complaintList.map((complaint: Report, index: number) => (
           <div
@@ -34,6 +35,13 @@ const TenantReceivedList: React.FC<any> = (props: any) => {
                   </RenderIf>
                 </p>
                 <p className="text-sm">Type: {complaint.report_type.name}</p>
+                <RenderIf condition={'shop_id' in complaint}>
+                  <p className="text-sm">Shop: {complaint?.shop?.name}</p>
+                </RenderIf>
+
+                <RenderIf condition={!('shop_id' in complaint)}>
+                  <p className="text-sm">Odyssey Shopping Center</p>
+                </RenderIf>
               </div>
             </div>
             <IonIcon icon={chevronForward} className="text-2xl" />
@@ -47,4 +55,4 @@ const TenantReceivedList: React.FC<any> = (props: any) => {
   );
 };
 
-export default TenantReceivedList;
+export default UserItemList;

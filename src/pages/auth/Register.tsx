@@ -123,7 +123,7 @@ const Registration: React.FC = () => {
                 control={control}
                 render={({ field }) => (
                   <>
-                    <p className="!mb-[-12px]">Name</p>
+                    <p className="!mb-[-12px] text-white">Name</p>
                     <InputGroup
                       width="full"
                       sx={{
@@ -153,7 +153,7 @@ const Registration: React.FC = () => {
                 control={control}
                 render={({ field }) => (
                   <>
-                    <p className="!mb-[-12px]">Email Address</p>
+                    <p className="!mb-[-12px] text-white">Email Address</p>
                     <InputGroup
                       width="full"
                       sx={{
@@ -180,7 +180,7 @@ const Registration: React.FC = () => {
                 control={control}
                 render={({ field }) => (
                   <>
-                    <p className="!mb-[-12px]">Mobile Number</p>
+                    <p className="!mb-[-12px] text-white">Mobile Number</p>
                     <InputGroup
                       width="full"
                       sx={{
@@ -207,7 +207,7 @@ const Registration: React.FC = () => {
                 control={control}
                 render={({ field }) => (
                   <>
-                    <p className="!mb-[-12px]">Password</p>
+                    <p className="!mb-[-12px] text-white">Password</p>
                     <InputGroup
                       width="full"
                       sx={{
@@ -234,7 +234,7 @@ const Registration: React.FC = () => {
                 control={control}
                 render={({ field }) => (
                   <>
-                    <p className="!mb-[-12px]">Confirm Password</p>
+                    <p className="!mb-[-12px] text-white">Confirm Password</p>
                     <InputGroup
                       width="full"
                       sx={{

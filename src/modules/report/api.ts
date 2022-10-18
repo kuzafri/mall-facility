@@ -13,7 +13,7 @@ import {
 import { db, CrudApi } from "helpers";
 import { Report } from "./model";
 import { getRecoil } from "recoil-nexus";
-import { User, userAtom, userFactory } from "modules";
+import { User, userAtom, userFactory, shopFactory } from "modules";
 
 class ReportApi extends CrudApi {
   constructor() {
@@ -37,11 +37,13 @@ class ReportApi extends CrudApi {
     const user = getRecoil(userAtom);
     const result = await userFactory().getUserByToken(user.token);
 
+    const shop = await shopFactory().getShopByOwner(result[0].id);
+
     switch (scope) {
       case "tenant":
         q = query(
           collection(db, this.COLLECTION),
-          where("shop_id", "==", result[0].id)
+          where("shop_id", "==", shop[0].id)
         );
         break;
       case "submitted":

@@ -6,7 +6,11 @@ import BaseButton from "components/Base/BaseButton";
 import PublicHeader from "components/Layout/PublicHeader";
 
 /* Helpers */
-import { getLocalStorage, ToolbarTransitionHelper } from "helpers";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  ToolbarTransitionHelper,
+} from "helpers";
 
 /* Hooks */
 import useToastify from "hooks/useToastify";
@@ -25,13 +29,15 @@ import {
 } from "@chakra-ui/react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
-import { authFactory } from "modules";
+import { authFactory, User, userAtom } from "modules";
+import { useSetRecoilState } from "recoil";
 
 const Login: React.FC = () => {
   const { showToast } = useToastify();
   const { goTo } = useNavigate();
 
   const toolbarRef = useRef<HTMLIonToolbarElement>(null);
+  const setUser = useSetRecoilState(userAtom);
 
   const FormSchema = z.object({
     email: z
@@ -57,8 +63,18 @@ const Login: React.FC = () => {
   });
 
   const onSubmitHandler: SubmitHandler<FormSchemaType> = async (data: any) => {
-    if (await authFactory().login(data)) {
-      goTo("/home");
+    const result = (await authFactory().login(data)) as User;
+
+    if (Object.entries(result).length > 0) {
+      setUser(result);
+      setLocalStorage("user", result);
+      if (result.role === "3") {
+        goTo("/home", "forward", "pop");
+      } else if (result.role === "2") {
+        goTo("/tenanthome", "forward", "pop");
+      } else {
+        throw new Error("Not Available");
+      }
       reset({ email: "", password: "" });
     } else {
       showToast("error", "Invalid credential, please try again");
@@ -86,7 +102,7 @@ const Login: React.FC = () => {
                 control={control}
                 render={({ field }) => (
                   <>
-                    <p className="!mb-[-12px]">Email Address</p>
+                    <p className="!mb-[-12px] text-white">Email Address</p>
                     <InputGroup
                       width="full"
                       sx={{
@@ -113,7 +129,7 @@ const Login: React.FC = () => {
                 control={control}
                 render={({ field }) => (
                   <>
-                    <p className="!mb-[-12px]">Password</p>
+                    <p className="!mb-[-12px] text-white">Password</p>
                     <InputGroup
                       width="full"
                       sx={{
@@ -137,7 +153,7 @@ const Login: React.FC = () => {
             </Stack>
 
             <p
-              className="text-sm text-primary mt-3 mb-3"
+              className="text-sm text-white mt-3 mb-3"
               onClick={() => goTo("/forgot-password")}
             >
               Forgot Password?
@@ -151,6 +167,7 @@ const Login: React.FC = () => {
           <p className="text-sm text-black text-center">
             Didn't have an account?
             <span className="!text-white" onClick={() => goTo("/register")}>
+              {" "}
               Create an account
             </span>
           </p>
