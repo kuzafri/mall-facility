@@ -52,6 +52,7 @@ import TenantComplaintList from "pages/tenant/TenantComplaintList";
 import TenantMallComplaintPage from "pages/tenant/TenantMallComplaintPage";
 import TenantSendVoucher from "pages/tenant/TenantSendVoucher";
 import MallLayout from "pages/MallLayout";
+import Voucher from "pages/Voucher";
 
 setupIonicReact({
   swipeBackEnabled: false,
@@ -140,6 +141,7 @@ const App: React.FC = () => (
               component={ShopComplaintPage}
             />
             <SingleRoute exact path="/malllayout" component={MallLayout} />
+            <SingleRoute exact path="/voucher" component={Voucher} />
             {/* ... */}
 
             <Route exact path="/">

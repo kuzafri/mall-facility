@@ -1,23 +1,20 @@
 import { IonPage } from "@ionic/react";
+import { userAtom } from "modules";
 import { Route, Redirect } from "react-router";
-import { getLocalStorage } from "helpers";
+import { useRecoilValue } from "recoil";
 
 const PublicRoute: React.FC<any> = ({ component: Component, ...rest }) => {
-  console.log(Object.entries(getLocalStorage("user")).length > 0);
+  const user = useRecoilValue(userAtom);
   return (
     <>
-      {Object.entries(getLocalStorage("user")).length > 0 ? (
-        <Redirect to="/home" />
-      ) : (
-        <Route
-          {...rest}
-          render={(props) => (
-            <IonPage>
-              <Component {...props} />
-            </IonPage>
-          )}
-        />
-      )}
+      <Route
+        {...rest}
+        render={(props) => (
+          <IonPage>
+            <Component {...props} />
+          </IonPage>
+        )}
+      />
     </>
   );
 };

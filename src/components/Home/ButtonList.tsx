@@ -21,7 +21,7 @@ const ButtonList = () => {
           <div className="w-auto mx-auto my-auto">
             <div
               className="px-5 py-2  w-27 h-23 rounded-full !bg-[#bfdadf]"
-              onClick={() => goTo("/mallcomplaintpage", "forward")}
+              onClick={() => goTo("/shop", "forward")}
             >
               <i className="fa-solid fa-store text-2xl  mb-2 mt-2 --bg-primary"></i>
             </div>
@@ -30,7 +30,7 @@ const ButtonList = () => {
           <div className="w-auto mx-auto my-auto">
             <div
               className="px-5 py-2  w-27 h-23 rounded-full !bg-[#bfdadf]"
-              onClick={() => goTo("/shop", "forward")}
+              onClick={() => goTo("/malllayout", "forward")}
             >
               <i className="fa-solid fa-city text-2xl mb-2 mt-2 --bg-primary"></i>
             </div>

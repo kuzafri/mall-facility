@@ -1,4 +1,4 @@
-import React, { FormEvent, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { IonContent, IonIcon, IonImg, useIonViewWillEnter } from "@ionic/react";
 
 /* Custom Component */
@@ -19,33 +19,42 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { EmailIcon, LockIcon, PhoneIcon } from "@chakra-ui/icons";
 import { Stack, InputGroup, InputLeftElement, Input } from "@chakra-ui/react";
 import { BasePopupModal } from "components/Base";
-import { checkmarkCircle } from "ionicons/icons";
+import { checkmarkCircle, person } from "ionicons/icons";
 
 const Registration: React.FC = () => {
   const { goTo } = useNavigate();
-  const [isSuccess, setSuccess] = useState(true);
+  const [isSuccess, setSuccess] = useState(false);
 
   const toolbarRef = useRef<HTMLIonToolbarElement>(null);
 
   const FormSchema = z.object({
-    name: z.string({
-      required_error: "Name is required",
-    }),
+    name: z
+      .string({
+        required_error: "Name is required",
+      })
+      .min(1),
     email: z
       .string({
         required_error: "Email is required",
       })
-      .email({ message: "Invalid email address" }),
-    password: z.string({
-      required_error: "Password is required",
-    }),
+      .email({ message: "Invalid email address" })
+      .min(1),
+    password: z
+      .string({
+        required_error: "Password is required",
+      })
+      .min(8),
     // TODO: buat checking if cpassword === password
-    confirm_password: z.string({
-      required_error: "Please confirm your password",
-    }),
-    mobile_no: z.string({
-      required_error: "Mobile number is required",
-    }),
+    confirm_password: z
+      .string({
+        required_error: "Please confirm your password",
+      })
+      .min(8),
+    mobile_no: z
+      .string({
+        required_error: "Mobile number is required",
+      })
+      .min(1),
   });
 
   type FormSchemaType = z.infer<typeof FormSchema>;
@@ -57,6 +66,13 @@ const Registration: React.FC = () => {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<FormSchemaType>({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirm_password: "",
+      mobile_no: "",
+    },
     resolver: zodResolver(FormSchema),
   });
 
@@ -117,7 +133,9 @@ const Registration: React.FC = () => {
                     >
                       <InputLeftElement
                         pointerEvents="none"
-                        // children={<PeopleIcon color="gray.300" />}
+                        children={
+                          <IonIcon icon={person} className="text-gray-300" />
+                        }
                       />
                       <Input
                         type="text"
@@ -266,7 +284,10 @@ const Registration: React.FC = () => {
           </form>
           <p className="text-sm text-center">
             Already have an account?{" "}
-            <span className="text-primary" onClick={() => goTo("/login")}>
+            <span
+              className="text-white font-semibold"
+              onClick={() => goTo("/login")}
+            >
               Sign In
             </span>
           </p>

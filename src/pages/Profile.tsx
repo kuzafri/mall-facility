@@ -7,15 +7,18 @@ import Tab from "components/Profile/Tab";
 import { BaseButton } from "components/Base";
 import { removeLocalStorage } from "helpers";
 import { useSetRecoilState } from "recoil";
-import { User, userAtom } from "modules";
+import { userAtom } from "modules";
+import useNavigate from "hooks/useNavigate";
 
 const Profile: React.FC = () => {
+  const { goTo } = useNavigate();
   const setUser = useSetRecoilState(userAtom);
 
   const signOutHandler = async () => {
     // TODO: Trigger Alert Confirmation
-    setUser(new User());
+    setUser({} as any);
     await removeLocalStorage("user");
+    goTo("/landing", "forward", "pop");
   };
 
   return (

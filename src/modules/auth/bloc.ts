@@ -10,7 +10,7 @@ export const authFactory = () => {
   const register = async (data: Auth) => {
     try {
       data.password = crypto.SHA256(data.confirm_password!).toString();
-      data.role = "1";
+      data.role = "3";
       data.token = generate_token();
 
       delete data["confirm_password"];
@@ -41,13 +41,13 @@ export const authFactory = () => {
       if (result!.size > 0) {
         result?.forEach(async (doc) => {
           if (doc.data()) {
-            return userData = {
+            return (userData = {
               name: doc.data().name,
               email: doc.data().email,
               token: doc.data().token,
               role: doc.data().role,
               mobile_no: doc.data().mobile_no,
-            };
+            });
           }
         });
       }

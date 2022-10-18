@@ -16,19 +16,28 @@ import useNavigate from "hooks/useNavigate";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Swiper as SwiperType } from "swiper/types";
 import ItemList from "components/ComplainList/ItemList";
-import { reportFactory } from "modules";
+import { Report, reportFactory } from "modules";
 
 const ComplaintList: React.FC = () => {
   const { goBack } = useNavigate();
 
   const [currentSection, setCurrentSection] = useState(0);
+  const [receivedReport, setReceivedReport] = useState<Report[]>([]);
+  const [submittedReport, setSubmittedReport] = useState<Report[]>([]);
+
   const swiperRef = useRef<SwiperType>();
 
   useEffect(() => {
     reportFactory()
       .getReports("tenant")
       .then((result: any) => {
-        console.log(result);
+        setReceivedReport(result);
+      });
+
+    reportFactory()
+      .getReports("submitted")
+      .then((result) => {
+        setSubmittedReport(result);
       });
   }, []);
 
@@ -80,10 +89,10 @@ const ComplaintList: React.FC = () => {
             }}
           >
             <SwiperSlide>
-              <ItemList />
+              <ItemList complaintList={receivedReport} />
             </SwiperSlide>
             <SwiperSlide>
-              <ItemList />
+              <ItemList complaintList={submittedReport} />
             </SwiperSlide>
           </Swiper>
         </div>

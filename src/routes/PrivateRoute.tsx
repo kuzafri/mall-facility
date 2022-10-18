@@ -1,19 +1,14 @@
-import {
-  IonPage,
-  IonTabBar,
-  IonTabButton,
-  IonIcon,
-  IonLabel,
-} from "@ionic/react";
+import { IonPage, IonTabBar, IonTabButton, IonIcon } from "@ionic/react";
 import { Route, Redirect } from "react-router";
 import { home, albums, person } from "ionicons/icons";
-import { useEffect } from "react";
-import { getLocalStorage } from "helpers";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "modules";
 
 const PrivateRoute: React.FC<any> = ({ component: Component, ...rest }) => {
+  const user = useRecoilValue(userAtom);
+
   return (
     <>
-      {/* {Object.entries(getLocalStorage("user")).length > 0 ? ( */}
       <Route
         {...rest}
         render={(props) => (
@@ -33,9 +28,6 @@ const PrivateRoute: React.FC<any> = ({ component: Component, ...rest }) => {
           </IonPage>
         )}
       />
-      {/* ) : (
-        <Redirect to="/login" />
-      )} */}
     </>
   );
 };
