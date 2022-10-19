@@ -12,9 +12,9 @@ const Voucher = () => {
             src="assets/img/voucher2.jpg"
             className="h-[40%] mx-auto shadow-md mt-10 bg-white"
           />
-          <div className="rounded-full bg-gray-300 absolute p-2 shadow-lg t-3 z-999">
+          {/* <div className="rounded-full bg-gray-300 absolute p-2 shadow-lg t-3 z-999">
             2x
-          </div>
+          </div> */}
         </div>
       </IonContent>
     </>

@@ -51,6 +51,8 @@ import TenantProfile from "pages/tenant/TenantProfile";
 import TenantComplaintList from "pages/tenant/TenantComplaintList";
 import TenantMallComplaintPage from "pages/tenant/TenantMallComplaintPage";
 import TenantSendVoucher from "pages/tenant/TenantSendVoucher";
+import Voucher from "pages/Voucher";
+import MallLayout from "pages/MallLayout";
 
 setupIonicReact({
   swipeBackEnabled: false,
@@ -86,7 +88,11 @@ const App: React.FC = () => (
 
             {/* Single Route ----------------------------------------------*/}
             <SingleRoute exact path="/notification" component={Notification} />
-            <SingleRoute exact path="/complaintlist" component={ComplaintList} />
+            <SingleRoute
+              exact
+              path="/complaintlist"
+              component={ComplaintList}
+            />
             <SingleRoute
               exact
               path="/complaint/:id"
@@ -120,25 +126,9 @@ const App: React.FC = () => (
               component={TenantSendVoucher}
             />
             {/* ... */}
-            {/* Single Route ----------------------------------------------*/}
-            <SingleRoute exact path="/notification" component={Notification} />
-            <SingleRoute exact path="/ComplaintList" component={ComplaintList} />
-            <SingleRoute
-              exact
-              path="/ComplaintDetails"
-              component={ComplaintDetails}
-            />
-            <SingleRoute
-              exact
-              path="/mallcomplaintpage"
-              component={MallComplaintPage}
-            />
-            <SingleRoute
-              exact
-              path="/shopcomplaintpage"
-              component={ShopComplaintPage}
-            />
-            {/* ... */}
+
+            <SingleRoute exact path="/voucher" component={Voucher} />
+            <SingleRoute exact path="/malllayout" component={MallLayout} />
 
             <Route exact path="/">
               <Redirect to="/landing" />
