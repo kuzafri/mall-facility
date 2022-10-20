@@ -110,10 +110,7 @@ const Registration: React.FC = () => {
         <div className="landing absolute top-0 h-full w-full opacity-5 z-[-1]"></div>
         <div className="p-5 ">
           <div className="h-[150px] flex flex-row items-center justify-center">
-            <IonImg
-              class="h-full"
-              src="assets/img/undraw_Access_account_re_8spm.svg"
-            />
+            <IonImg class="h-full" src="assets/img/signup.png" />
           </div>
 
           <form onSubmit={handleSubmit(onSubmitHandler)} className="my-3">
