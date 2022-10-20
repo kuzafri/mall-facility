@@ -9,6 +9,7 @@ import {
   where,
   Query,
   DocumentData,
+  orderBy,
 } from "firebase/firestore";
 import { db, CrudApi } from "helpers";
 import { Report } from "./model";
@@ -43,17 +44,22 @@ class ReportApi extends CrudApi {
       case "tenant":
         q = query(
           collection(db, this.COLLECTION),
-          where("shop_id", "==", shop[0].id)
+          where("shop_id", "==", shop[0].id),
+          orderBy("created_at", "desc")
         );
         break;
       case "submitted":
         q = query(
           collection(db, this.COLLECTION),
-          where("user_id", "==", result[0].id)
+          where("user_id", "==", result[0].id),
+          orderBy("created_at", "desc")
         );
         break;
       default:
-        q = query(collection(db, this.COLLECTION));
+        q = query(
+          collection(db, this.COLLECTION),
+          orderBy("created_at", "desc")
+        );
     }
 
     try {

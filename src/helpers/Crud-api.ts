@@ -1,3 +1,4 @@
+import { serverTimestamp } from "firebase/firestore";
 export class CrudApi {
   protected COLLECTION = "";
   protected DOC: any;
@@ -14,7 +15,7 @@ export class CrudApi {
       delete (data as any)[testData!];
     });
 
-    data = { ...data, created_at: new Date().toString() };
+    data = { ...data, created_at: serverTimestamp() };
     return data;
   }
 }

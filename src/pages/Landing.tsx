@@ -12,7 +12,17 @@ const Landing: React.FC = () => {
 
   return (
     <>
-      <IonContent fullscreen style={{ "--background": "#4B727A" }}>
+      <IonContent
+        fullscreen
+        style={{
+          "--background": "#4B727A",
+          "--overflow": "hidden",
+        }}
+      >
+        <IonImg
+          src="assets/img/deer-footer.png"
+          className="absolute bottom-0 w-fit opacity-[60%] scale-150"
+        />
         <div className="flex flex-col relative mt-[12rem] px-5 h-full space-y-3">
           <div className="flex flex-col justify-center  h-[150px] m-6">
             <IonImg src="assets/img/logo.png" className=" h-[120px]" />
@@ -28,7 +38,7 @@ const Landing: React.FC = () => {
           />
           <BaseButton
             label="Sign Up"
-            className="!bg-white !text-black w-60 mx-auto"
+            className="!bg-white !text-black !drop-shadow-none w-60 mx-auto"
             onClick={() => goTo("/register")}
           />
           {/* <div className="landing !bottom-0 h-full w-full opacity-[8]"></div> */}

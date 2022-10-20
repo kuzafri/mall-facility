@@ -10,10 +10,10 @@ const Post = () => {
           className="p-2 "
           //   onClick={() => goTo("/singleitem", "forward")}
         >
-          <div className="p-3 h-30% w-full bg-white grid grid-cols-2 grid-rows-1 rounded-lg  border border-[#ffeeee] shadow-[0_10px_15px_-3px_rgb(255,215,215,0.7)_,_0_4px_6px_-4px_rgb(255,215,215,0.7)]">
-            <div className="w-[max] col-span-3">
+          <div className="p-3 h-30% w-full bg-white rounded-lg  border border-[#ffeeee] shadow-[0_10px_15px_-3px_rgb(255,215,215,0.7)_,_0_4px_6px_-4px_rgb(255,215,215,0.7)]">
+            <div className="w-[max] flex flex-row items-center space-x-3">
+              <div className="rounded-full bg-gray-400 w-12 h-12"></div>
               <div>
-                <div className="rounded-full bg-gray-400 w-12 h-12"></div>
                 <div className="ml-3">Body Glove</div>
                 <div className="ml-3">Lot-2-7</div>
               </div>

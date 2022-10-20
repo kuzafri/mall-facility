@@ -11,16 +11,18 @@ export function usePhotoGallery() {
 
   const takePhoto = async () => {
     const photo = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera,
       quality: 90,
+      saveToGallery: true,
     });
 
     const fileName = new Date().getTime() + ".jpeg";
     const newPhotos = [
       {
         filepath: fileName,
-        webviewPath: photo.webPath,
+        webviewPath: photo.dataUrl,
+        ...photo,
       },
       ...photos,
     ];

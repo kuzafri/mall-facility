@@ -13,6 +13,7 @@ export class Report {
   public updated_at!: string;
   public status!: string;
   public is_active!: boolean;
+  public complaint_image: any = [];
 
   public user: User = new User();
   public shop: Shop = new Shop();

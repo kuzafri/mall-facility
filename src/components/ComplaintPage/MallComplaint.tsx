@@ -16,7 +16,6 @@ import { usePhotoGallery } from "hooks/usePhotoGallery";
 
 const MallComplaint: React.FC<any> = ({ reportType }) => {
   const user = useRecoilValue(userAtom);
-  const [image, setImage] = useState<any>();
   const { takePhoto, photos, removePhoto } = usePhotoGallery();
 
   const FormSchema = z.object({
@@ -56,7 +55,7 @@ const MallComplaint: React.FC<any> = ({ reportType }) => {
   });
 
   const onSubmitHandler: SubmitHandler<FormSchemaType> = async (data: any) => {
-    data = { ...data, image };
+    data = { ...data, complaint_image: [...photos] };
     await reportFactory().createReport(data);
 
     reset({

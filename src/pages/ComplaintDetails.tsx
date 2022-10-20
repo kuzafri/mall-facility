@@ -43,7 +43,7 @@ const ComplaintDetails: React.FC = (props: any) => {
             <BaseButton label="Accept" />
             <BaseButton
               label="Reject"
-              className="!bg-transparent border !drop-shadow-none border-primary text-primary"
+              className="!bg-transparent border !drop-shadow-none border-primary !text-rose-500"
             />
           </div>
         </IonFooter>

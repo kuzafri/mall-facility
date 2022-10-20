@@ -2,6 +2,8 @@ import { userAtom, userFactory, reportTypeFactory, shopFactory } from "modules";
 import { getRecoil } from "recoil-nexus";
 import { reportApi } from "./api";
 import { Report } from "modules";
+import { uploadFile, imageRef } from "helpers";
+import { getDownloadURL } from "firebase/storage";
 
 export const reportFactory = () => {
   const api = reportApi;
@@ -18,6 +20,10 @@ export const reportFactory = () => {
       shop = await shopFactory().getShop(data.shop_id);
     }
 
+    data.complaint_image.forEach((image: any) => {
+      uploadFile(image);
+    });
+
     data = {
       ...data,
       user_id: responseUser[0].id,
@@ -25,7 +31,9 @@ export const reportFactory = () => {
       shop,
       report_type,
       status: "Pending",
+      complaint_image: data.complaint_image.map((image: any) => image.filepath),
     };
+
     return await api.create(data);
   };
 
@@ -34,7 +42,8 @@ export const reportFactory = () => {
 
     const data: any = [];
     result?.forEach((doc) => {
-      const tempData = { id: doc.id, ...doc.data() };
+      const tempData = { id: doc.id, ...doc.data() } as Report;
+
       data.push(tempData);
     });
 
@@ -42,7 +51,18 @@ export const reportFactory = () => {
   };
 
   const getReport = async (id: string): Promise<any> => {
-    return await api.first(id);
+    const res = (await api.first(id)) as Report;
+
+    const data = {
+      ...res,
+      complaint_image: await Promise.all(
+        res.complaint_image.map(
+          async (image: string) => await getDownloadURL(imageRef(image))
+        )
+      ),
+    };
+
+    return data;
   };
 
   const updateReport = async (id: string, data: Report): Promise<any> => {

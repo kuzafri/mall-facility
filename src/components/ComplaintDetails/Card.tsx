@@ -1,6 +1,8 @@
 import React from "react";
 import { IonImg, IonText } from "@ionic/react";
 import { RenderIf } from "components/Base";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
 
 const Card: React.FC<any> = ({ complaint }) => {
   return (
@@ -32,6 +34,26 @@ const Card: React.FC<any> = ({ complaint }) => {
             <p>Description: </p>
             <p>{complaint?.description}</p>
           </div>
+          <div
+            className={`mt-5 gap-3 grid ${
+              complaint.complaint_image.length > 0
+                ? `grid-cols-${complaint.complaint_image.length}`
+                : "grid-cols-1"
+            }`}
+          >
+            {complaint.complaint_image.map((image: string, index: number) => (
+              <IonImg src={image} key={image + index} />
+            ))}
+          </div>
+          {/* <Swiper className="mt-5" modules={[Pagination]}>
+            {complaint.complaint_image.map((image: string, index: number) => (
+              <SwiperSlide key={image + index} className="h-[30vh]">
+                <div className="flex flex-row">
+                  <IonImg src={image} />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper> */}
         </div>
       </div>
     </>
