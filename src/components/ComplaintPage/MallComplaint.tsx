@@ -1,14 +1,23 @@
-import React from "react";
-import { Stack, InputGroup, Input, Textarea, Select } from "@chakra-ui/react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { BaseButton } from "components/Base";
-import { userAtom, reportFactory } from "modules";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { useRecoilValue } from "recoil";
+import React, { useState } from "react";
 import { z } from "zod";
+import { useRecoilValue } from "recoil";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { IonIcon, IonImg, IonLabel } from "@ionic/react";
+import { imageOutline, trashOutline } from "ionicons/icons";
+
+/** Custom Component **/
+import { BaseButton, RenderIf } from "components/Base";
+import { Stack, InputGroup, Input, Textarea, Select } from "@chakra-ui/react";
+
+/** Helpers/Hooks **/
+import { userAtom, reportFactory } from "modules";
+import { usePhotoGallery } from "hooks/usePhotoGallery";
 
 const MallComplaint: React.FC<any> = ({ reportType }) => {
   const user = useRecoilValue(userAtom);
+  const [image, setImage] = useState<any>();
+  const { takePhoto, photos, removePhoto } = usePhotoGallery();
 
   const FormSchema = z.object({
     name: z.string({
@@ -47,6 +56,7 @@ const MallComplaint: React.FC<any> = ({ reportType }) => {
   });
 
   const onSubmitHandler: SubmitHandler<FormSchemaType> = async (data: any) => {
+    data = { ...data, image };
     await reportFactory().createReport(data);
 
     reset({
@@ -134,14 +144,55 @@ const MallComplaint: React.FC<any> = ({ reportType }) => {
           />
 
           <p className="!mb-[-12px] text-[#7b7b7b]">Image of Complaint</p>
-          <InputGroup
-            width="full"
-            sx={{
-              "--banner-color": "colors.gray.100",
-            }}
-          >
-            <Input type="file" className="text-black" />
-          </InputGroup>
+          {photos.length > 0 ? (
+            <div className="border border-primary h-[12rem] rounded-lg border-dashed p-3 pb-8 grid grid-cols-3 gap-3">
+              {photos.map((photo, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center justify-center relative"
+                >
+                  <IonImg src={photo.webviewPath} />
+                  <div
+                    className="absolute flex flex-row items-center space-x-1 bottom-[-1.5rem] border border-primary px-1 rounded-full text-xs"
+                    onClick={() => {
+                      removePhoto(index);
+                      console.log(photos);
+                    }}
+                  >
+                    <IonIcon icon={trashOutline} className="text-primary" />
+                    <span className="text-primary">Delete</span>
+                  </div>
+                </div>
+              ))}
+              <RenderIf condition={photos.length < 3}>
+                <div
+                  className="border border-gray-500 border-dashed rounded-lg p-3 flex flex-col items-center justify-center"
+                  onClick={takePhoto}
+                >
+                  <IonIcon
+                    icon={imageOutline}
+                    className="text-3xl text-gray-500"
+                  />
+                  <IonLabel className="text-xs text-gray-500">
+                    Add Image
+                  </IonLabel>
+                </div>
+              </RenderIf>
+            </div>
+          ) : (
+            <div className="border border-primary h-[12rem] rounded-lg border-dashed p-3 grid grid-cols-3">
+              <div
+                className="border border-gray-500 border-dashed rounded-lg p-3 flex flex-col items-center justify-center"
+                onClick={takePhoto}
+              >
+                <IonIcon
+                  icon={imageOutline}
+                  className="text-3xl text-gray-500"
+                />
+                <IonLabel className="text-xs text-gray-500">Add Image</IonLabel>
+              </div>
+            </div>
+          )}
 
           <Controller
             name="description"
@@ -161,11 +212,12 @@ const MallComplaint: React.FC<any> = ({ reportType }) => {
             )}
           />
         </Stack>
-
-        <BaseButton
-          label="Submit"
-          className="my-3 !bg-[#196B79] w-[60%] mt-12 float-right mx-auto drop-shadow-[bg-white] text-white"
-        />
+        <div className="flex flex-row justify-end w-full">
+          <BaseButton
+            label="Submit"
+            className="mt-5 !bg-[#196B79] w-[60%] drop-shadow-[bg-white] text-white"
+          />
+        </div>
       </form>
     </>
   );

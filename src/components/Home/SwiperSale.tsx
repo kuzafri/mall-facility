@@ -8,7 +8,7 @@ const SwiperSale = () => {
         <h3 className="text-black text-lg font-bold">Save 8% Today!</h3>
         <Swiper pagination={true} slidesPerView={2.75} spaceBetween={10}>
           {[...Array(10)].map((_, index) => (
-            <SwiperSlide key={`cafe-${index}`} className=" w-[6rem] pb-5 pt-3">
+            <SwiperSlide key={`cafe-${index}`} className=" w-[6rem] py-3">
               <div
                 className="h-[8rem] bg-white flex flex-row justify-center items-center rounded-lg px-3 border border-[#b6b6b6] shadow-[#878787]"
                 //   onClick={() => openModal(singlePageModal)}

@@ -27,7 +27,7 @@ const Tab = () => {
           <div>
             <div className="w-auto mx-auto my-auto">
               <div className="w-24 h-23 rounded-full ">
-                <i className="fa-solid fa-file text-2xl ml-[2.55rem] mt-5  "></i>
+                <i className="fa-solid fa-file text-2xl ml-[2.55rem] mt-5  text-primary"></i>
               </div>
               <p className="text-xs text-center mb-2 mt-[0.25rem]">
                 Your Complaint

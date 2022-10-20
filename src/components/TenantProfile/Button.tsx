@@ -1,21 +1,22 @@
-import BaseButton from "components/Base/BaseButton";
 import React from "react";
+import { IonIcon } from "@ionic/react";
+import { lockClosedOutline } from "ionicons/icons";
 
-const Button = () => {
+/** Custom Component **/
+import BaseButton from "components/Base/BaseButton";
+
+const Button: React.FC = () => {
   return (
-    <>
-      <div className="w-[90%] h-[6%] bg-[#93b6bc] mx-auto mt-6 rounded-lg p-3 text-white">
-        Change Password
+    <div className="space-y-4 my-5">
+      <div className="bg-light flex flex-row space-x-4 mx-auto rounded-lg p-3 text-white">
+        <IonIcon icon={lockClosedOutline} className="text-white text-lg" />
+        <p>Change Password</p>
       </div>
-      <div className="w-[90%] h-[6%] bg-[#93b6bc] mx-auto mt-6 rounded-lg p-3 text-white">
-        Term & Condition
+      <div className="bg-light flex flex-row space-x-4 mx-auto rounded-lg p-3 text-white">
+        <IonIcon icon={lockClosedOutline} className="text-white text-lg" />
+        <p>Term & Condition</p>
       </div>
-
-      <BaseButton
-        label="Log Out"
-        className=" !bg-[#196B79] w-[90%] mt-3 mx-auto drop-shadow-[bg-white] text-white justify-center item-center"
-      />
-    </>
+    </div>
   );
 };
 

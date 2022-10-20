@@ -1,7 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import { getStorage, ref } from "firebase/storage";
+import {
+  getStorage,
+  ref,
+  StorageReference,
+  uploadBytes,
+} from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -17,8 +22,12 @@ const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
 export const auth = getAuth();
-export const storage = getStorage();
+export const storage = getStorage(app);
 
 export const imageRef = (imageName: string) => {
-  return ref(storage, imageName);
+  return ref(storage, `report-image/${imageName}`);
+};
+
+export const uploadFile = async (ref: StorageReference, file: any) => {
+  return await uploadBytes(ref, file);
 };

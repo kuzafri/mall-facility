@@ -49,7 +49,6 @@ import TenantNews from "pages/tenant/TenantNews";
 import TenantHome from "pages/tenant/TenantHome";
 import TenantProfile from "pages/tenant/TenantProfile";
 import TenantComplaintList from "pages/tenant/TenantComplaintList";
-import TenantMallComplaintPage from "pages/tenant/TenantMallComplaintPage";
 import TenantSendVoucher from "pages/tenant/TenantSendVoucher";
 import Voucher from "pages/Voucher";
 import MallLayout from "pages/MallLayout";
@@ -85,9 +84,23 @@ const App: React.FC = () => (
               path="/tenantprofile"
               component={TenantProfile}
             />
+            <SingleRoute
+              exact
+              path="/tenantcomplaintlist"
+              component={TenantComplaintList}
+            />
+            <SingleRoute
+              exact
+              path="/tenantcomplaintlist"
+              component={TenantComplaintList}
+            />
+            <SingleRoute
+              exact
+              path="/tenantsendvoucher"
+              component={TenantSendVoucher}
+            />
 
             {/* Single Route ----------------------------------------------*/}
-            <SingleRoute exact path="/notification" component={Notification} />
             <SingleRoute
               exact
               path="/complaintlist"
@@ -109,26 +122,9 @@ const App: React.FC = () => (
               component={ShopComplaintPage}
             />
 
-            {/* Tenant Module Routing -------------------------------------*/}
-            <SingleRoute
-              exact
-              path="/tenantmallcomplaintpage"
-              component={TenantMallComplaintPage}
-            />
-            <SingleRoute
-              exact
-              path="/TenantComplaintList"
-              component={TenantComplaintList}
-            />
-            <SingleRoute
-              exact
-              path="/tenantsendvoucher"
-              component={TenantSendVoucher}
-            />
-            {/* ... */}
-
             <SingleRoute exact path="/voucher" component={Voucher} />
             <SingleRoute exact path="/malllayout" component={MallLayout} />
+            {/* ... */}
 
             <Route exact path="/">
               <Redirect to="/landing" />
