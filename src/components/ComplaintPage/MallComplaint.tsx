@@ -7,6 +7,7 @@ import { IonIcon, IonImg, IonLabel } from "@ionic/react";
 import { imageOutline, trashOutline } from "ionicons/icons";
 
 /** Custom Component **/
+import StatusModal from "./StatusModal";
 import { BaseButton, RenderIf } from "components/Base";
 import { Stack, InputGroup, Input, Textarea, Select } from "@chakra-ui/react";
 
@@ -17,6 +18,8 @@ import { usePhotoGallery } from "hooks/usePhotoGallery";
 const MallComplaint: React.FC<any> = ({ reportType }) => {
   const user = useRecoilValue(userAtom);
   const { takePhoto, photos, removePhoto } = usePhotoGallery();
+
+  const [isStatusModalOpen, setStatusModalOpen] = useState(false);
 
   const FormSchema = z.object({
     name: z.string({
@@ -57,6 +60,8 @@ const MallComplaint: React.FC<any> = ({ reportType }) => {
   const onSubmitHandler: SubmitHandler<FormSchemaType> = async (data: any) => {
     data = { ...data, complaint_image: [...photos] };
     await reportFactory().createReport(data);
+
+    setStatusModalOpen(true);
 
     reset({
       name: undefined,
@@ -218,6 +223,13 @@ const MallComplaint: React.FC<any> = ({ reportType }) => {
           />
         </div>
       </form>
+
+      <StatusModal
+        isOpen={isStatusModalOpen}
+        closeModal={() => {
+          setStatusModalOpen(false);
+        }}
+      />
     </>
   );
 };

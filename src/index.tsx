@@ -5,12 +5,16 @@ import reportWebVitals from "./reportWebVitals";
 import ReactDOM from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ToastContainer } from "react-toastify";
+import { defineCustomElements } from "@ionic/pwa-elements/loader";
 import "./global.css";
 import "./index.css";
 
 /* 3rd Party Styling */
 import "swiper/css";
 import "swiper/css/pagination";
+import "focus-visible/dist/focus-visible";
+
+defineCustomElements(window);
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(

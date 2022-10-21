@@ -73,7 +73,7 @@ const Login: React.FC = () => {
       } else if (result.role === "2") {
         goTo("/tenanthome", "forward", "pop");
       } else {
-        throw new Error("Not Available");
+        goTo("/adminhome", "forward", "pop");
       }
       reset({ email: "", password: "" });
     } else {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 
 export interface UserPhoto {
@@ -12,7 +12,7 @@ export function usePhotoGallery() {
   const takePhoto = async () => {
     const photo = await Camera.getPhoto({
       resultType: CameraResultType.DataUrl,
-      source: CameraSource.Camera,
+      source: CameraSource.Prompt,
       quality: 90,
       saveToGallery: true,
     });
