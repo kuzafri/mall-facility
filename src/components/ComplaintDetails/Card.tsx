@@ -1,20 +1,21 @@
 import React from "react";
-import { IonImg, IonText } from "@ionic/react";
+import { IonImg } from "@ionic/react";
 import { RenderIf } from "components/Base";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
 
 const Card: React.FC<any> = ({ complaint }) => {
   return (
     <>
-      <div className="bg-gray-100 mx-5 rounded-lg mt-10 shadow-lg p-3">
+      <div className="bg-gray-100 m-5 rounded-lg mt-10 shadow-lg p-3">
         <h3 className="text-center text-xl">
           Status:{" "}
           <RenderIf condition={complaint?.status === "Pending"}>
-            <IonText color="warning">{complaint?.status}</IonText>
+            <span className="text-yellow-500">{complaint?.status}</span>
           </RenderIf>
-          <RenderIf condition={complaint?.status === "Review"}>
-            <IonText color="warning">{complaint?.status}</IonText>
+          <RenderIf condition={complaint?.status === "Processing"}>
+            <span className="text-orange-500">{complaint?.status}</span>
+          </RenderIf>
+          <RenderIf condition={complaint?.status === "Complete"}>
+            <span className="text-green-500">{complaint?.status}</span>
           </RenderIf>
         </h3>
 

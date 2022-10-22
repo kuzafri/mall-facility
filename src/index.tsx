@@ -6,15 +6,39 @@ import ReactDOM from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ToastContainer } from "react-toastify";
 import { defineCustomElements } from "@ionic/pwa-elements/loader";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  PointElement,
+  LineElement,
+} from "chart.js";
+
 import "./global.css";
 import "./index.css";
 
 /* 3rd Party Styling */
 import "swiper/css";
+import "swiper/css/zoom";
 import "swiper/css/pagination";
 import "focus-visible/dist/focus-visible";
 
 defineCustomElements(window);
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(

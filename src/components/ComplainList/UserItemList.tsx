@@ -27,19 +27,22 @@ const UserItemList: React.FC<any> = (props: any) => {
               <div className="mt-3">
                 <p className="text-sm">
                   Status:{" "}
-                  <RenderIf condition={complaint.status === "Review"}>
-                    <IonText color="success">Reviewed</IonText>
+                  <RenderIf condition={complaint?.status === "Pending"}>
+                    <span className="text-yellow-500">{complaint?.status}</span>
                   </RenderIf>
-                  <RenderIf condition={complaint.status === "Pending"}>
-                    <IonText color="warning">Pending</IonText>
+                  <RenderIf condition={complaint?.status === "Processing"}>
+                    <span className="text-orange-500">{complaint?.status}</span>
+                  </RenderIf>
+                  <RenderIf condition={complaint?.status === "Complete"}>
+                    <span className="text-green-500">{complaint?.status}</span>
                   </RenderIf>
                 </p>
                 <p className="text-sm">Type: {complaint.report_type.name}</p>
-                <RenderIf condition={'shop_id' in complaint}>
+                <RenderIf condition={"shop_id" in complaint}>
                   <p className="text-sm">Shop: {complaint?.shop?.name}</p>
                 </RenderIf>
 
-                <RenderIf condition={!('shop_id' in complaint)}>
+                <RenderIf condition={!("shop_id" in complaint)}>
                   <p className="text-sm">Odyssey Shopping Center</p>
                 </RenderIf>
               </div>

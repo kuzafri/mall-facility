@@ -167,7 +167,6 @@ const Login: React.FC = () => {
           <p className="text-sm text-black text-center">
             Didn't have an account?
             <span className="!text-white" onClick={() => goTo("/register")}>
-              {" "}
               Create an account
             </span>
           </p>

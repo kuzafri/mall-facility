@@ -6,10 +6,13 @@ import {
   IonHeader,
   IonIcon,
   IonLabel,
+  IonRefresher,
+  IonRefresherContent,
   IonSegment,
   IonSegmentButton,
   IonTitle,
   IonToolbar,
+  RefresherEventDetail,
 } from "@ionic/react";
 import { arrowBack } from "ionicons/icons";
 import useNavigate from "hooks/useNavigate";
@@ -40,6 +43,21 @@ const ComplaintList: React.FC = () => {
         setSubmittedReport(result);
       });
   }, []);
+
+  const refetch = (event: CustomEvent<RefresherEventDetail>) => {
+    reportFactory()
+      .getReports()
+      .then((result) => {
+        setSubmittedReport(result);
+        event.detail.complete();
+      });
+
+    reportFactory()
+      .getReports("submitted")
+      .then((result) => {
+        setSubmittedReport(result);
+      });
+  };
 
   return (
     <>
@@ -82,6 +100,9 @@ const ComplaintList: React.FC = () => {
         </div>
 
         <div>
+          <IonRefresher slot="fixed" onIonRefresh={refetch}>
+            <IonRefresherContent></IonRefresherContent>
+          </IonRefresher>
           <Swiper
             onSwiper={(swiper: SwiperType) => (swiperRef.current = swiper)}
             onSlideChange={(swiper: any) => {

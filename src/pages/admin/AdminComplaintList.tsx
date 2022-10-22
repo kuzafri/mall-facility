@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   IonButton,
   IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
-  IonTitle,
-  IonToolbar,
   IonRefresher,
   IonRefresherContent,
+  IonTitle,
+  IonToolbar,
   RefresherEventDetail,
 } from "@ionic/react";
 import { arrowBack } from "ionicons/icons";
@@ -23,15 +23,16 @@ const ComplaintList: React.FC = () => {
 
   useEffect(() => {
     reportFactory()
-      .getReports("submitted")
+      .getReports()
       .then((result) => {
         setSubmittedReport(result);
       });
+
   }, []);
 
   const refetch = (event: CustomEvent<RefresherEventDetail>) => {
     reportFactory()
-      .getReports("submitted")
+      .getReports()
       .then((result) => {
         setSubmittedReport(result);
         event.detail.complete();

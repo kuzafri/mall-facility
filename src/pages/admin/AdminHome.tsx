@@ -15,15 +15,19 @@ const AdminHome: React.FC = () => {
         <IonToolbar mode="ios" className="custom-toolbar overflow-visible">
           <div className="flex flex-row text-white items-center justify-between mx-3 pt-3 py-5 h-[80px]">
             <p className="text-lg ml-6">
-              Welcome, <b>Admin</b>
+              Welcome, <b>{user.name}</b>
             </p>
           </div>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen style={{ "--background": "#efefef !important" }}>
-        <AdminChart />
+        <div className="mt-5 mx-3">
+          <AdminChart />
+        </div>
         <SwiperCurrentSeason />
-        <DummyData />
+        <div className="mb-5 mx-3">
+          <DummyData />
+        </div>
       </IonContent>
     </>
   );

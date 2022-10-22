@@ -6,6 +6,7 @@ import { useRecoilValue } from "recoil";
 
 const PublicRoute: React.FC<any> = ({ component: Component, ...rest }) => {
   const user = useRecoilValue(userAtom);
+
   return (
     <>
       {Object.keys(user).length > 0 ? (
@@ -15,6 +16,9 @@ const PublicRoute: React.FC<any> = ({ component: Component, ...rest }) => {
           </RenderIf>
           <RenderIf condition={user.role === "2"}>
             <Redirect to="/tenanthome" />
+          </RenderIf>
+          <RenderIf condition={user.role === "1"}>
+            <Redirect to="/adminhome" />
           </RenderIf>
         </>
       ) : (
