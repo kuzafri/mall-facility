@@ -36,6 +36,9 @@ const UserItemList: React.FC<any> = (props: any) => {
                   <RenderIf condition={complaint?.status === "Complete"}>
                     <span className="text-green-500">{complaint?.status}</span>
                   </RenderIf>
+                  <RenderIf condition={complaint?.status === "Rejected"}>
+                    <span className="text-rose-500">{complaint?.status}</span>
+                  </RenderIf>
                 </p>
                 <p className="text-sm">Type: {complaint.report_type.name}</p>
                 <RenderIf condition={"shop_id" in complaint}>

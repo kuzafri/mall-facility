@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import {
   IonButton,
   IonButtons,
@@ -10,6 +10,7 @@ import {
   IonTitle,
   IonToolbar,
   RefresherEventDetail,
+  useIonViewWillEnter,
 } from "@ionic/react";
 import { arrowBack } from "ionicons/icons";
 import useNavigate from "hooks/useNavigate";
@@ -21,15 +22,6 @@ const ComplaintList: React.FC = () => {
 
   const [submittedReport, setSubmittedReport] = useState<Report[]>([]);
 
-  useEffect(() => {
-    reportFactory()
-      .getReports()
-      .then((result) => {
-        setSubmittedReport(result);
-      });
-
-  }, []);
-
   const refetch = (event: CustomEvent<RefresherEventDetail>) => {
     reportFactory()
       .getReports()
@@ -38,6 +30,14 @@ const ComplaintList: React.FC = () => {
         event.detail.complete();
       });
   };
+
+  useIonViewWillEnter(() => {
+    reportFactory()
+      .getReports()
+      .then((result) => {
+        setSubmittedReport(result);
+      });
+  });
 
   return (
     <>

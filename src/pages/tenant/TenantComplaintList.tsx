@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   IonButton,
   IonButtons,
@@ -13,6 +13,7 @@ import {
   IonTitle,
   IonToolbar,
   RefresherEventDetail,
+  useIonViewWillEnter,
 } from "@ionic/react";
 import { arrowBack } from "ionicons/icons";
 import useNavigate from "hooks/useNavigate";
@@ -30,7 +31,7 @@ const ComplaintList: React.FC = () => {
 
   const swiperRef = useRef<SwiperType>();
 
-  useEffect(() => {
+  useIonViewWillEnter(() => {
     reportFactory()
       .getReports("tenant")
       .then((result: any) => {
@@ -42,7 +43,7 @@ const ComplaintList: React.FC = () => {
       .then((result) => {
         setSubmittedReport(result);
       });
-  }, []);
+  });
 
   const refetch = (event: CustomEvent<RefresherEventDetail>) => {
     reportFactory()
@@ -80,7 +81,10 @@ const ComplaintList: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <div className="fixed w-full z-50 bg-white">
+        <IonRefresher slot="fixed" onIonRefresh={refetch} className="z-50">
+          <IonRefresherContent></IonRefresherContent>
+        </IonRefresher>
+        <div className="fixed w-full z-10 bg-white">
           <IonSegment
             value={currentSection.toString()}
             onIonChange={(e: any) => {
@@ -100,9 +104,6 @@ const ComplaintList: React.FC = () => {
         </div>
 
         <div>
-          <IonRefresher slot="fixed" onIonRefresh={refetch}>
-            <IonRefresherContent></IonRefresherContent>
-          </IonRefresher>
           <Swiper
             onSwiper={(swiper: SwiperType) => (swiperRef.current = swiper)}
             onSlideChange={(swiper: any) => {

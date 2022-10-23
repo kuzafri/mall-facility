@@ -10,6 +10,7 @@ import {
   IonRefresher,
   IonRefresherContent,
   RefresherEventDetail,
+  useIonViewWillEnter,
 } from "@ionic/react";
 import { arrowBack } from "ionicons/icons";
 import useNavigate from "hooks/useNavigate";
@@ -20,6 +21,10 @@ const ComplaintList: React.FC = () => {
   const { goBack } = useNavigate();
 
   const [submittedReport, setSubmittedReport] = useState<Report[]>([]);
+
+  useIonViewWillEnter(() => {
+    console.log("test");
+  });
 
   useEffect(() => {
     reportFactory()

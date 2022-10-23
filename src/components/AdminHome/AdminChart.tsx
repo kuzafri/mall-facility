@@ -13,7 +13,7 @@ export const options = {
     },
   },
   animation: {
-    duration: 500
+    duration: 500,
   },
 };
 
@@ -47,7 +47,9 @@ export const data = {
 const AdminChart: React.FC = () => {
   return (
     <>
-      <Line data={data} options={options} />
+      <div className="bg-white shadow-lg p-3 rounded-lg">
+        <Line data={data} options={options} />
+      </div>
     </>
   );
 };

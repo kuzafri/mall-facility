@@ -5,7 +5,7 @@ import { RenderIf } from "components/Base";
 const Card: React.FC<any> = ({ complaint }) => {
   return (
     <>
-      <div className="bg-gray-100 m-5 rounded-lg mt-10 shadow-lg p-3">
+      <div className="bg-white m-5 rounded-lg mt-10 shadow-lg p-3">
         <h3 className="text-center text-xl">
           Status:{" "}
           <RenderIf condition={complaint?.status === "Pending"}>
@@ -16,6 +16,9 @@ const Card: React.FC<any> = ({ complaint }) => {
           </RenderIf>
           <RenderIf condition={complaint?.status === "Complete"}>
             <span className="text-green-500">{complaint?.status}</span>
+          </RenderIf>
+          <RenderIf condition={complaint?.status === "Rejected"}>
+            <span className="text-rose-500">{complaint?.status}</span>
           </RenderIf>
         </h3>
 
