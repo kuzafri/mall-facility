@@ -1,10 +1,17 @@
 import React from "react";
+import { IonImg } from "@ionic/react";
 import SwiperPhoto from "./SwiperPhoto";
+import { Swiper, SwiperSlide } from "swiper/react";
 
+const DUMMY_DATA = [
+  "assets/img/news1.png",
+  "assets/img/news2.png",
+  "assets/img/news3.png",
+];
 const Post = () => {
   return (
     <>
-      {[...Array(2)].map((_, index) => (
+      {[...Array(1)].map((_, index) => (
         <div
           key={`post-${index}`}
           className="p-2 "
@@ -19,12 +26,18 @@ const Post = () => {
               </div>
             </div>
             <p className="col-span-2 mt-4 p-2">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been
+              The changing room have a lot of hole and it is uncomfortable.
             </p>
-            <div className="col-span-2">
-              <SwiperPhoto />
-            </div>
+
+            <Swiper pagination={true} slidesPerView={2.75} spaceBetween={10}>
+              {DUMMY_DATA.map((link, index) => (
+                <SwiperSlide key={`swiper-${index}`} className=" w-[6rem] py-3">
+                  <div className="col-span-2">
+                    <IonImg src={link} />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       ))}
