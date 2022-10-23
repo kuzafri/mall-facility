@@ -26,7 +26,7 @@ const TenantProfile: React.FC = () => {
       <PrivateHeader title={"Profile"} />
       <IonContent>
         <div className="mx-3">
-          <TenantTab />
+          {/* <TenantTab /> */}
           <ShopDetails />
           <Button />
           <BaseButton

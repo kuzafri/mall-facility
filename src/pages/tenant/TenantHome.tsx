@@ -23,7 +23,6 @@ const Home: React.FC = () => {
       <IonContent fullscreen style={{ "--background": "#efefef !important" }}>
         <ButtonListTenant />
         <SwiperCurrentSeason />
-        <SwiperSeason />
       </IonContent>
     </>
   );
