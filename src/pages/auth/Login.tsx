@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { IonContent, IonImg, useIonViewWillEnter } from "@ionic/react";
 
 /* Custom Component */
@@ -6,11 +6,7 @@ import BaseButton from "components/Base/BaseButton";
 import PublicHeader from "components/Layout/PublicHeader";
 
 /* Helpers */
-import {
-  getLocalStorage,
-  setLocalStorage,
-  ToolbarTransitionHelper,
-} from "helpers";
+import { setLocalStorage, ToolbarTransitionHelper } from "helpers";
 
 /* Hooks */
 import useToastify from "hooks/useToastify";
@@ -28,7 +24,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { EmailIcon, LockIcon } from "@chakra-ui/icons";
+import { EmailIcon, LockIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { authFactory, User, userAtom } from "modules";
 import { useSetRecoilState } from "recoil";
 
@@ -37,6 +33,7 @@ const Login: React.FC = () => {
   const { goTo } = useNavigate();
 
   const toolbarRef = useRef<HTMLIonToolbarElement>(null);
+  const [showPassword, setShowPasword] = useState(false);
   const setUser = useSetRecoilState(userAtom);
 
   const FormSchema = z.object({
@@ -52,31 +49,28 @@ const Login: React.FC = () => {
 
   type FormSchemaType = z.infer<typeof FormSchema>;
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<FormSchemaType>({
+  const { control, handleSubmit, reset } = useForm<FormSchemaType>({
     defaultValues: { email: "", password: "" },
     resolver: zodResolver(FormSchema),
   });
 
   const onSubmitHandler: SubmitHandler<FormSchemaType> = async (data: any) => {
-    const result = (await authFactory().login(data)) as User;
+    try {
+      const result = (await authFactory().login(data)) as User;
 
-    if (Object.entries(result).length > 0) {
-      setUser(result);
-      setLocalStorage("user", result);
-      if (result.role === "3") {
-        goTo("/home", "forward", "pop");
-      } else if (result.role === "2") {
-        goTo("/tenanthome", "forward", "pop");
-      } else {
-        goTo("/adminhome", "forward", "pop");
+      if (Object.entries(result).length > 0) {
+        setUser(result);
+        setLocalStorage("user", result);
+        if (result.role === "3") {
+          goTo("/home", "forward", "pop");
+        } else if (result.role === "2") {
+          goTo("/tenanthome", "forward", "pop");
+        } else {
+          goTo("/adminhome", "forward", "pop");
+        }
+        reset({ email: "", password: "" });
       }
-      reset({ email: "", password: "" });
-    } else {
+    } catch (error: any) {
       showToast("error", "Invalid credential, please try again");
     }
   };
@@ -141,11 +135,26 @@ const Login: React.FC = () => {
                         children={<LockIcon color="gray.300" />}
                       />
                       <Input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         placeholder="Password"
                         style={{ backgroundColor: "white", color: "black" }}
                         {...field}
                       />
+                      {showPassword ? (
+                        <InputRightElement
+                          children={<ViewOffIcon color="gray.300" />}
+                          onClick={() => {
+                            setShowPasword(!showPassword);
+                          }}
+                        />
+                      ) : (
+                        <InputRightElement
+                          children={<ViewIcon color="gray.300" />}
+                          onClick={() => {
+                            setShowPasword(!showPassword);
+                          }}
+                        />
+                      )}
                     </InputGroup>
                   </>
                 )}
@@ -167,6 +176,7 @@ const Login: React.FC = () => {
           <p className="text-sm text-black text-center">
             Didn't have an account?
             <span className="!text-white" onClick={() => goTo("/register")}>
+              {" "}
               Create an account
             </span>
           </p>

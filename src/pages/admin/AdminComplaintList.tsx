@@ -43,7 +43,7 @@ const ComplaintList: React.FC = () => {
     <>
       <IonHeader mode="ios" className="custom-header">
         <IonToolbar mode="ios" className="--bg-transparent !pt-5 !pb-3">
-          {/* <IonButtons slot="start">
+          <IonButtons slot="start">
             <IonButton
               onClick={() => {
                 goBack();
@@ -55,7 +55,7 @@ const ComplaintList: React.FC = () => {
                 slot="icon-only"
               />
             </IonButton>
-          </IonButtons> */}
+          </IonButtons>
           <IonTitle className="text-xl text-white">Complaint List</IonTitle>
         </IonToolbar>
       </IonHeader>

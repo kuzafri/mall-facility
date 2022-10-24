@@ -16,14 +16,28 @@ import useNavigate from "hooks/useNavigate";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { EmailIcon, LockIcon, PhoneIcon } from "@chakra-ui/icons";
-import { Stack, InputGroup, InputLeftElement, Input } from "@chakra-ui/react";
+import {
+  EmailIcon,
+  LockIcon,
+  PhoneIcon,
+  ViewIcon,
+  ViewOffIcon,
+} from "@chakra-ui/icons";
+import {
+  Stack,
+  InputGroup,
+  InputLeftElement,
+  Input,
+  InputRightElement,
+} from "@chakra-ui/react";
 import { BasePopupModal } from "components/Base";
 import { checkmarkCircle, person } from "ionicons/icons";
 
 const Registration: React.FC = () => {
   const { goTo } = useNavigate();
   const [isSuccess, setSuccess] = useState(false);
+  const [showPassword, setShowPasword] = useState(false);
+  const [showConfirmPassword, setConfirmShowPasword] = useState(false);
 
   const toolbarRef = useRef<HTMLIonToolbarElement>(null);
 
@@ -60,12 +74,7 @@ const Registration: React.FC = () => {
   type FormSchemaType = z.infer<typeof FormSchema>;
   // type FormSchemaType = User;
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<FormSchemaType>({
+  const { control, handleSubmit, reset } = useForm<FormSchemaType>({
     defaultValues: {
       name: "",
       email: "",
@@ -110,7 +119,10 @@ const Registration: React.FC = () => {
         <div className="landing absolute top-0 h-full w-full opacity-5 z-[-1]"></div>
         <div className="p-5 ">
           <div className="h-[150px] flex flex-row items-center justify-center">
-            <IonImg class="h-full" src="assets/img/signup.png" />
+            <IonImg
+              class="h-full"
+              src="assets/img/undraw_Access_account_re_8spm.svg"
+            />
           </div>
 
           <form onSubmit={handleSubmit(onSubmitHandler)} className="my-3">
@@ -216,11 +228,26 @@ const Registration: React.FC = () => {
                         children={<LockIcon color="gray.300" />}
                       />
                       <Input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         placeholder="Password"
                         style={{ backgroundColor: "white", color: "black" }}
                         {...field}
                       />
+                      {showPassword ? (
+                        <InputRightElement
+                          children={<ViewOffIcon color="gray.300" />}
+                          onClick={() => {
+                            setShowPasword(!showPassword);
+                          }}
+                        />
+                      ) : (
+                        <InputRightElement
+                          children={<ViewIcon color="gray.300" />}
+                          onClick={() => {
+                            setShowPasword(!showPassword);
+                          }}
+                        />
+                      )}
                     </InputGroup>
                   </>
                 )}
@@ -243,11 +270,26 @@ const Registration: React.FC = () => {
                         children={<LockIcon color="gray.300" />}
                       />
                       <Input
-                        type="password"
+                        type={showConfirmPassword ? "text" : "password"}
                         placeholder="Confirm Password"
                         style={{ backgroundColor: "white", color: "black" }}
                         {...field}
                       />
+                      {showConfirmPassword ? (
+                        <InputRightElement
+                          children={<ViewOffIcon color="gray.300" />}
+                          onClick={() => {
+                            setConfirmShowPasword(!showConfirmPassword);
+                          }}
+                        />
+                      ) : (
+                        <InputRightElement
+                          children={<ViewIcon color="gray.300" />}
+                          onClick={() => {
+                            setConfirmShowPasword(!showConfirmPassword);
+                          }}
+                        />
+                      )}
                     </InputGroup>
                   </>
                 )}

@@ -15,7 +15,7 @@ import { useRecoilValue } from "recoil";
 import useNavigate from "hooks/useNavigate";
 import useToastify from "hooks/useToastify";
 
-const ComplaintDetails: React.FC = (props: any) => {
+const ComplainDetails: React.FC = (props: any) => {
   const id = props.match.params.id ?? "";
   const user = useRecoilValue(userAtom);
   const { goTo } = useNavigate();
@@ -114,4 +114,4 @@ const ComplaintDetails: React.FC = (props: any) => {
   );
 };
 
-export default ComplaintDetails;
+export default ComplainDetails;
