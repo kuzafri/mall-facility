@@ -34,13 +34,13 @@ const ComplaintList: React.FC = () => {
   useIonViewWillEnter(() => {
     reportFactory()
       .getReports("tenant")
-      .then((result: any) => {
+      .then((result: Report[]) => {
         setReceivedReport(result);
       });
 
     reportFactory()
       .getReports("submitted")
-      .then((result) => {
+      .then((result: Report[]) => {
         setSubmittedReport(result);
       });
   });
@@ -48,14 +48,14 @@ const ComplaintList: React.FC = () => {
   const refetch = (event: CustomEvent<RefresherEventDetail>) => {
     reportFactory()
       .getReports()
-      .then((result) => {
+      .then((result: Report[]) => {
         setSubmittedReport(result);
         event.detail.complete();
       });
 
     reportFactory()
       .getReports("submitted")
-      .then((result) => {
+      .then((result: Report[]) => {
         setSubmittedReport(result);
       });
   };

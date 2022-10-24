@@ -36,7 +36,7 @@ class ReportApi extends CrudApi {
   async all(scope?: string) {
     let q: Query<DocumentData>;
     const user = getRecoil(userAtom);
-    const result = await userFactory().getUserByToken(user.token);
+    const result = (await userFactory().getUserByToken(user.token));
 
     const shop = await shopFactory().getShopByOwner(result[0].id);
 
@@ -44,22 +44,17 @@ class ReportApi extends CrudApi {
       case "tenant":
         q = query(
           collection(db, this.COLLECTION),
-          where("shop_id", "==", shop[0].id),
-          orderBy("created_at", "desc")
+          where("shop_id", "==", shop[0].id), orderBy("created_at", "desc")
         );
         break;
       case "submitted":
         q = query(
           collection(db, this.COLLECTION),
-          where("user_id", "==", result[0].id),
-          orderBy("created_at", "desc")
+          where("user_id", "==", result[0].id), orderBy("created_at", "desc")
         );
         break;
       default:
-        q = query(
-          collection(db, this.COLLECTION),
-          orderBy("created_at", "desc")
-        );
+        q = query(collection(db, this.COLLECTION), orderBy("created_at", "desc"));
     }
 
     try {

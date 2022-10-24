@@ -41,14 +41,14 @@ export const authFactory = () => {
       if (result!.size > 0) {
         result?.forEach(async (doc) => {
           if (doc.data()) {
-            return (userData = {
+            return userData = {
               id: doc.id,
               name: doc.data().name,
               email: doc.data().email,
               token: doc.data().token,
               role: doc.data().role,
               mobile_no: doc.data().mobile_no,
-            });
+            };
           }
         });
       }

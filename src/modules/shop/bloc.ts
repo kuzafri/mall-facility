@@ -10,7 +10,7 @@ export const shopFactory = () => {
     const user = getRecoil(userAtom);
     const responseUser = await userFactory().getUserByToken(user.token);
 
-    data = { ...data, user_id: responseUser[0].id };
+    data = { ...data, owner: responseUser[0].id };
     return await api.create(data);
   };
 

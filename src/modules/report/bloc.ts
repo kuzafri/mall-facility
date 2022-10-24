@@ -1,7 +1,12 @@
-import { userAtom, userFactory, reportTypeFactory, shopFactory } from "modules";
+import {
+  userAtom,
+  userFactory,
+  reportTypeFactory,
+  shopFactory,
+  Report,
+} from "modules";
 import { getRecoil } from "recoil-nexus";
 import { reportApi } from "./api";
-import { Report } from "modules";
 import { uploadFile, imageRef } from "helpers";
 import { getDownloadURL } from "firebase/storage";
 
@@ -37,7 +42,7 @@ export const reportFactory = () => {
     return await api.create(data);
   };
 
-  const getReports = async (query?: string): Promise<any> => {
+  const getReports = async (query?: string): Promise<Report[]> => {
     const result = await api.all(query);
 
     const data: any = [];
@@ -65,7 +70,7 @@ export const reportFactory = () => {
     return data;
   };
 
-  const updateReport = async (id: string, data: Report): Promise<any> => {
+  const updateReport = async (id: string, data: any): Promise<any> => {
     return await api.update(id, data);
   };
 

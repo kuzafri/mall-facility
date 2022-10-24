@@ -15,7 +15,7 @@ import { useRecoilValue } from "recoil";
 import useNavigate from "hooks/useNavigate";
 import useToastify from "hooks/useToastify";
 
-const ComplainDetails: React.FC = (props: any) => {
+const ComplaintDetails: React.FC = (props: any) => {
   const id = props.match.params.id ?? "";
   const user = useRecoilValue(userAtom);
   const { goTo } = useNavigate();
@@ -75,9 +75,9 @@ const ComplainDetails: React.FC = (props: any) => {
             complaint.status !== "Complete" &&
             complaint.status !== "Rejected") ||
           (user.role === "1" &&
-            !("shop_id" in complaint) &&
             complaint.status !== "Complete" &&
-            complaint.status !== "Rejected")
+            complaint.status !== "Rejected" &&
+            !("shop_id" in complaint))
         }
       >
         <IonFooter>
@@ -114,4 +114,4 @@ const ComplainDetails: React.FC = (props: any) => {
   );
 };
 
-export default ComplainDetails;
+export default ComplaintDetails;

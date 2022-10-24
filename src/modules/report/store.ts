@@ -1,19 +1,19 @@
-import { getLocalStorage } from "helpers";
+// import { reportFactory } from 'modules';
 import { atom, selector } from "recoil";
 import { Report } from "./model";
 
 export const reportAtom = atom<Report>({
   key: "reportState",
-  default: getLocalStorage('user') as Report,
+  default: new Report(),
 });
 
 export const reportSelector = selector({
   key: "reportSelector",
-  get: ({ get }) => {
-    const user = get(reportAtom);
-    return user;
+  get: async ({ get }) => {
+    const report = new Report();
+    return report
   },
-  set: ({set}, userData) => {
-    set(reportAtom, userData)
+  set: ({set}, report) => {
+    set(reportAtom, report)
   }
 });
