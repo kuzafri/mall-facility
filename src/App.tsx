@@ -55,6 +55,8 @@ import MallLayout from "pages/MallLayout";
 import AdminHome from "pages/admin/AdminHome";
 import AdminProfile from "pages/admin/AdminProfile";
 import Shop from "pages/Shop";
+import AdminComplaintList from "pages/admin/AdminComplaintList";
+import AdminRoute from "routes/AdminRoute";
 
 setupIonicReact({
   swipeBackEnabled: false,
@@ -131,6 +133,15 @@ const App: React.FC = () => (
             <SingleRoute exact path="/adminhome" component={AdminHome} />
             <SingleRoute exact path="/adminprofile" component={AdminProfile} />
             {/* ... */}
+
+            {/* Admin Module Routing -------------------------------------*/}
+            <AdminRoute exact path="/adminhome" component={AdminHome} />
+            <AdminRoute exact path="/adminprofile" component={AdminProfile} />
+            <AdminRoute
+              exact
+              path="/adminlist"
+              component={AdminComplaintList}
+            />
 
             <Route exact path="/">
               <Redirect to="/landing" />
