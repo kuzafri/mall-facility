@@ -31,7 +31,7 @@ const Card: React.FC<any> = ({ complaint }) => {
           </RenderIf>
           <RenderIf condition={!("shop_id" in complaint)}>
             <div className="flex flex-row space-x-3">
-              <p>Odysses Shopping Centre</p>
+              <p>Odyssey Shopping Centre</p>
             </div>
           </RenderIf>
           <div className="flex flex-row space-x-3">
